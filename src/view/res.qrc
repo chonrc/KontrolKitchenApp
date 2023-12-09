@@ -1,5 +1,7 @@
 <RCC>
-  <qresource prefix="images">
-    <file>resources/Captura desde 2023-10-03 13-13-20.png</file>
-  </qresource>
+<qresource prefix="/images">
+   <file>resources/logo_negro.png</file>
+</qresource>
+
+
 </RCC>

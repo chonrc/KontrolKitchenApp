@@ -33,7 +33,7 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">image: url(:/images/resources/Captura desde 2023-10-03 13-13-20.png);
+      <string notr="true">image: url(:/images/resources/logo_negro.png);
 background-color: rgb(32,39,47);
 border-top-left-radius: 50px;</string>
      </property>
