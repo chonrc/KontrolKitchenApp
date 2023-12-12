@@ -51,34 +51,34 @@ class Ui_MainWindow(object):
         self.label_3.setFont(font)
         self.label_3.setStyleSheet("color: rgb(231, 231, 231);")
         self.label_3.setObjectName("label_3")
-        self.lineEdit = QtWidgets.QLineEdit(self.widget)
-        self.lineEdit.setGeometry(QtCore.QRect(295, 150, 190, 40))
+        self.lineUser = QtWidgets.QLineEdit(self.widget) 
+        self.lineUser.setGeometry(QtCore.QRect(295, 150, 190, 40))
         font = QtGui.QFont()
         font.setFamily("Sans Serif")
         font.setPointSize(10)
         font.setBold(False)
         font.setWeight(50)
-        self.lineEdit.setFont(font)
-        self.lineEdit.setStyleSheet("background-color: rgba(0, 0, 0,0);\n"
+        self.lineUser.setFont(font)
+        self.lineUser.setStyleSheet("background-color: rgba(0, 0, 0,0);\n"
 "border: none;\n"
 "border-bottom:2px solid rgba(46, 82, 101, 200);\n"
 "color: rgb(255, 255, 255);\n"
 "padding bottom: 7px;")
-        self.lineEdit.setObjectName("lineEdit")
-        self.lineEdit_2 = QtWidgets.QLineEdit(self.widget)
-        self.lineEdit_2.setGeometry(QtCore.QRect(295, 215, 190, 40))
+        self.lineUser.setObjectName("lineEdit") 
+        self.linePassword = QtWidgets.QLineEdit(self.widget) 
+        self.linePassword.setGeometry(QtCore.QRect(295, 215, 190, 40))
         font = QtGui.QFont()
         font.setFamily("Sans Serif")
         font.setPointSize(10)
-        self.lineEdit_2.setFont(font)
-        self.lineEdit_2.setStyleSheet("background-color: rgba(0, 0, 0,0);\n"
+        self.linePassword.setFont(font)
+        self.linePassword.setStyleSheet("background-color: rgba(0, 0, 0,0);\n"
 "border: none;\n"
 "border-bottom:2px solid rgba(46, 82, 101, 200);\n"
 "color: rgb(255, 255, 255);\n"
 "padding bottom: 7px;")
-        self.lineEdit_2.setText("")
-        self.lineEdit_2.setEchoMode(QtWidgets.QLineEdit.Password)
-        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.linePassword.setText("")
+        self.linePassword.setEchoMode(QtWidgets.QLineEdit.Password)      
+        self.linePassword.setObjectName("lineEdit_2")               
         self.pushButton_Login = QtWidgets.QPushButton(self.widget)
         self.pushButton_Login.setGeometry(QtCore.QRect(290, 295, 190, 40))
         font = QtGui.QFont()
@@ -119,14 +119,14 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label_3.setText(_translate("MainWindow", "Log In"))
-        self.lineEdit.setPlaceholderText(_translate("MainWindow", "User Name"))
-        self.lineEdit_2.setPlaceholderText(_translate("MainWindow", "Password"))
+        self.lineUser.setPlaceholderText(_translate("MainWindow", "User Name"))
+        self.linePassword.setPlaceholderText(_translate("MainWindow", "Password"))
         self.pushButton_Login.setText(_translate("MainWindow", "L o g  I n"))
         self.label_4.setText(_translate("MainWindow", "Forgot your User Name or Password?"))
         
     def authenticate(self):
-        username = self.lineEdit.text()
-        password = self.lineEdit_2.text()
+        username = self.lineUser.text()
+        password = self.linePassword.text()
 
         admin_controller = AdminController()  # Create an instance of AdminController (you might need to adjust this based on your actual implementation)
 
