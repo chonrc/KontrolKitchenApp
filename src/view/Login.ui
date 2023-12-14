@@ -51,7 +51,7 @@ border-top-left-radius: 50px;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(111,92,76);
+      <string notr="true">background-color: rgb(37, 150, 190);
 border-bottom-right-radius: 50px;</string>
      </property>
      <property name="text">

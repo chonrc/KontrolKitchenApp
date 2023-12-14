@@ -9,18 +9,24 @@ parent_directory = os.path.abspath(os.path.join(current_directory, '..'))
 # Agrega el directorio padre (src) al sys.path
 sys.path.append(parent_directory)
 
-# from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5 import QtWidgets
-from view import Login
+from PyQt5.QtWidgets import QApplication, QMainWindow
+import sys
+from Custom_Widgets.Widgets import *
+from view.Admin import *  # Replace 'your_module_name' with the actual module name
+from view.Login import * 
 
-
-def main():
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Login.Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+class MyApplication(QMainWindow):
+    def __init__(self):
+        QMainWindow.__init__(self)
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+        #loadJsonStyle(self, self.ui, jsonFiles = { "src/view/style.json"})
+        self.show()  
+        
+        
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    mainWindow = MyApplication()
+    mainWindow.show()
     sys.exit(app.exec_())
 
-if __name__ == "__main__":
-    main()

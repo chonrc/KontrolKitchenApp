@@ -131,6 +131,7 @@ class Ui_MainWindow(object):
         admin_controller = AdminController()  # Create an instance of AdminController (you might need to adjust this based on your actual implementation)
 
         if admin_controller.authenticate(username, password):
+        #Cambiar
             sys.exit(0)        
         else:
             self.show_error_message("Wrong Username or Password")
