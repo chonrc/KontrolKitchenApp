@@ -1,5 +1,6 @@
 from model.services.AdminService import AdminService
 from model.services.ConnectionService import Connection
+import sqlite3
 
 class AdminDao:
     def __init__(self):

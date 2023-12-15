@@ -6,6 +6,8 @@ current_directory = os.path.dirname(os.path.abspath(__file__))
 # Obtiene la ruta absoluta al directorio padre de la carpeta actual (es decir, src)
 parent_directory = os.path.abspath(os.path.join(current_directory, '..'))
 
+os.chdir('..\\..')
+
 # Agrega el directorio padre (src) al sys.path
 sys.path.append(parent_directory)
 

@@ -9,4 +9,6 @@ class Connection:
         self.cursor = self.connection.cursor()
 
     def close_connection(self):
-        self.connection.close()
+        if hasattr(self, 'connection'):
+            self.connection.close()
+
