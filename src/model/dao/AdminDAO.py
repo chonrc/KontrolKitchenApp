@@ -1,10 +1,22 @@
 from model.services.AdminService import AdminService
 from model.services.ConnectionService import Connection
 import sqlite3
+import os
 
 class AdminDao:
+
     def __init__(self):
-        self.db = Connection('db/Kitchen_database')
+        
+    # Get the current working directory
+        current_dir = os.getcwd()
+
+    # Define the relative path to your database file
+        db_relative_path = os.path.join(current_dir, 'Kitchen_database')
+
+        print("Database file is located here: ", db_relative_path)
+    
+        self.db = Connection(db_relative_path)
+
 
     def check_username_existence(self, username):
         try:

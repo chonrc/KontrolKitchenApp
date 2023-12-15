@@ -6,7 +6,20 @@ current_directory = os.path.dirname(os.path.abspath(__file__))
 # Obtiene la ruta absoluta al directorio padre de la carpeta actual (es decir, src)
 parent_directory = os.path.abspath(os.path.join(current_directory, '..'))
 
-os.chdir('..\\..')
+#os.chdir('..\\..')
+import os
+
+# Get the current working directory
+current_dir = os.getcwd()
+
+# Define the relative path to your database
+db_relative_path = os.path.join(current_dir, 'db')
+
+# Change the working directory to the database directory
+os.chdir(db_relative_path)
+
+print("Database is located here: ", db_relative_path)
+
 
 # Agrega el directorio padre (src) al sys.path
 sys.path.append(parent_directory)
