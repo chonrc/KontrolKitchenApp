@@ -3,20 +3,30 @@ from model.services.ConnectionService import Connection
 import sqlite3
 import os
 
+# At the start of your script
+import os
+
+# Get the current working directory
+current_dir = os.getcwd()
+
+# Define the relative path to your project directory
+#project_relative_path = os.path.join(current_dir, '..')
+
+# Change the working directory to the project directory
+#os.chdir(project_relative_path)
+
+print("Current working directory is now: ", os.getcwd())
+
 class AdminDao:
 
     def __init__(self):
         
-    # Get the current working directory
-        current_dir = os.getcwd()
-
-    # Define the relative path to your database file
-        db_relative_path = os.path.join(current_dir, 'Kitchen_database')
+        # Define the relative path to your database file
+        db_relative_path = os.path.join('db', 'Kitchen_database')
 
         print("Database file is located here: ", db_relative_path)
-    
+        
         self.db = Connection(db_relative_path)
-
 
     def check_username_existence(self, username):
         try:

@@ -16,7 +16,7 @@ current_dir = os.getcwd()
 db_relative_path = os.path.join(current_dir, 'db')
 
 # Change the working directory to the database directory
-os.chdir(db_relative_path)
+#os.chdir(db_relative_path)
 
 print("Database is located here: ", db_relative_path)
 
