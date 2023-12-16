@@ -1,5 +1,3 @@
-
-from controller.Admin_controller import AdminController 
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5 import QtCore, QtGui, QtWidgets  
 import view.res
@@ -102,7 +100,6 @@ class Ui_MainWindow(object):
 "    background-color:rgba(150, 123, 111, 255);\n"
 "}")
         self.pushButton_Login.setObjectName("pushButton_Login")
-        self.pushButton_Login.clicked.connect(self.authenticate)
 
         self.label_4 = QtWidgets.QLabel(self.widget)
         self.label_4.setGeometry(QtCore.QRect(280, 350, 221, 16))
@@ -124,17 +121,7 @@ class Ui_MainWindow(object):
         self.pushButton_Login.setText(_translate("MainWindow", "L o g  I n"))
         self.label_4.setText(_translate("MainWindow", "Forgot your User Name or Password?"))
         
-    def authenticate(self):
-        username = self.lineUser.text()
-        password = self.linePassword.text()
-
-        admin_controller = AdminController()  # Create an instance of AdminController (you might need to adjust this based on your actual implementation)
-
-        if admin_controller.authenticate(username, password):
-        #Cambiar
-            sys.exit(0)        
-        else:
-            self.show_error_message("Wrong Username or Password")
+           
 
     def show_error_message(self, message):
         msg_box = QMessageBox()

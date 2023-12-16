@@ -9,15 +9,10 @@ import os
 # Get the current working directory
 current_dir = os.getcwd()
 
-# Define the relative path to your project directory
-#project_relative_path = os.path.join(current_dir, '..')
-
-# Change the working directory to the project directory
-#os.chdir(project_relative_path)
 
 print("Current working directory is now: ", os.getcwd())
 
-class AdminDao:
+class LoginDao:
 
     def __init__(self):
         

@@ -1,18 +1,13 @@
-from model.dao.AdminDAO import *
-import bcrypt
+from PyQt5.QtWidgets import QMainWindow, QApplication
+from view.Admin import Ui_MainWindow
+from Custom_Widgets.Widgets import *
 
 class AdminController:
-    def authenticate(self, username ,password):
-        admin_dao = AdminDao()
-        admin_service = admin_dao.check_username_existence(username)
+    def __init__(self, app):
 
-        # Check that a unhashed password matches one that has previously been hashed
-        if  admin_service!= None and bcrypt.checkpw(password.encode('utf-8'), admin_service.password) and username == admin_service.username:
-            print("It Matches!") 
-            return True
-        else:
-            print("It Does not Match :(")
-        
-
-        
-        return False
+        self.app = app
+        self.window = QMainWindow()
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self.window)
+        loadJsonStyle(self, self.ui, jsonFiles = { "src/view/style.json"})
+        self.window.show()
