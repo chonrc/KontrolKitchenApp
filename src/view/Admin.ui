@@ -1297,7 +1297,7 @@ padding: 5px 5px;</string>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_4">
+           <widget class="QPushButton" name="pushButton_logout">
             <property name="text">
              <string> Logout</string>
             </property>
@@ -1327,7 +1327,7 @@ padding: 5px 5px;</string>
  <resources>
   <include location="res.qrc"/>
   <include location="res.qrc"/>
-  <include location="../KontrolKitchenApp/src/view/res.qrc"/>
+  <include location="res.qrc"/>
  </resources>
  <connections/>
 </ui>

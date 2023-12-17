@@ -18,6 +18,8 @@ from PyQt5.QtCore import pyqtSignal, pyqtSlot
 
 from controller.Login_controller import LoginController 
 from controller.Admin_controller import AdminController 
+from controller.WindowController import WindowController 
+
 from PyQt5.QtWidgets import QMainWindow, QApplication
 
 
@@ -27,13 +29,8 @@ def show_admin_window(app):
 
 def main():
     app = QApplication([])
-    login_controller = LoginController(app)
-    
-    
-
-    #login_controller.login_successful.connect(lambda: show_admin_window(app))
-
-    sys.exit(login_controller.app.exec_())
+    window_controller = WindowController(app)
+    app.exec_()
     
 
 

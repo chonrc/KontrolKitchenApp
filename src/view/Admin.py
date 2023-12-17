@@ -10,12 +10,25 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Custom_Widgets.Widgets import QCustomSlideMenu
-import view.res
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1294, 669)
+
+        MainWindow.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        MainWindow.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+        
+         # Get the screen geometry
+        screen_geo = QtWidgets.QDesktopWidget().screenGeometry()
+
+        # Calculate the center position for the main window
+        center_x = (screen_geo.width() - MainWindow.width()) // 2
+        center_y = (screen_geo.height() - MainWindow.height()) // 2
+
+        # Set the window position to the center
+        MainWindow.setGeometry(center_x, center_y, MainWindow.width(), MainWindow.height())
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -620,12 +633,12 @@ class Ui_MainWindow(object):
         self.pushButton_3.setIcon(icon8)
         self.pushButton_3.setObjectName("pushButton_3")
         self.verticalLayout_18.addWidget(self.pushButton_3)
-        self.pushButton_4 = QtWidgets.QPushButton(self.frame_13)
+        self.pushButton_logout = QtWidgets.QPushButton(self.frame_13)
         icon9 = QtGui.QIcon()
         icon9.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/power.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton_4.setIcon(icon9)
-        self.pushButton_4.setObjectName("pushButton_4")
-        self.verticalLayout_18.addWidget(self.pushButton_4)
+        self.pushButton_logout.setIcon(icon9)
+        self.pushButton_logout.setObjectName("pushButton_logout")
+        self.verticalLayout_18.addWidget(self.pushButton_logout)
         self.verticalLayout_17.addWidget(self.frame_13, 0, QtCore.Qt.AlignTop)
         self.horizontalLayout.addWidget(self.profileCont, 0, QtCore.Qt.AlignTop)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -659,5 +672,5 @@ class Ui_MainWindow(object):
         self.label_20.setText(_translate("MainWindow", "AdminName"))
         self.label_19.setText(_translate("MainWindow", "Admin"))
         self.pushButton_3.setText(_translate("MainWindow", "My Profile"))
-        self.pushButton_4.setText(_translate("MainWindow", " Logout"))
+        self.pushButton_logout.setText(_translate("MainWindow", " Logout"))
 

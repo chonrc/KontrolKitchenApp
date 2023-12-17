@@ -3,23 +3,16 @@ from model.services.ConnectionService import Connection
 import sqlite3
 import os
 
-# At the start of your script
 import os
 
-# Get the current working directory
 current_dir = os.getcwd()
-
-
-print("Current working directory is now: ", os.getcwd())
 
 class LoginDao:
 
     def __init__(self):
         
-        # Define the relative path to your database file
+        # Defines the relative path to our database file
         db_relative_path = os.path.join('db', 'Kitchen_database')
-
-        print("Database file is located here: ", db_relative_path)
         
         self.db = Connection(db_relative_path)
 
@@ -32,7 +25,6 @@ class LoginDao:
             result = self.db.cursor.fetchone()
 
             if result:
-                # If the username exists, create an AdminService object
                 admin_service = AdminService(username=result[0], password=result[1])
                 return admin_service
             else:
