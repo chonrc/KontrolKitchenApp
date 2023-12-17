@@ -1,8 +1,8 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication
-from view.Admin import Ui_MainWindow
+from view.NewProduct import Ui_MainWindow
 from Custom_Widgets.Widgets import *
 
-class AdminController(QWidget):
+class NewProduct_controller(QWidget):
     def __init__(self, window_controller):
         super().__init__()
         self.window_controller = window_controller
@@ -11,7 +11,7 @@ class AdminController(QWidget):
         self.ui.setupUi(self.window)
 
         self.ui.pushButton_logout.clicked.connect(self.logout)
-        self.ui.NewProduct_bttn.clicked.connect(self.newProduct)
+        self.ui.home_bttn.clicked.connect(self.home)
 
         loadJsonStyle(self, self.ui, jsonFiles = { "src/view/style.json"})
         self.window.show()
@@ -19,6 +19,6 @@ class AdminController(QWidget):
     def logout(self):
         self.window_controller.closeAll()
 
-    def newProduct(self):
+    def home(self):
         self.window.close()
-        self.window_controller.show_NewProduct()
+        self.window_controller.show_admin_controller()
