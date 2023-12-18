@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1294</width>
-    <height>669</height>
+    <width>1093</width>
+    <height>644</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -257,16 +257,15 @@ text-align:left;</string>
                  <widget class="QPushButton" name="Products_bttn">
                   <property name="styleSheet">
                    <string notr="true">padding: 10px 5px;
-background-color: #fefeff;
-text-align:left;
-border-top-left-radius:20px;</string>
+
+text-align:left;</string>
                   </property>
                   <property name="text">
                    <string>Products</string>
                   </property>
                   <property name="icon">
                    <iconset resource="res.qrc">
-                    <normaloff>:/blueIcons/resources/icons_blue/bar-chart.svg</normaloff>:/blueIcons/resources/icons_blue/bar-chart.svg</iconset>
+                    <normaloff>:/whiteIcons/resources/icons_white/bar-chart.svg</normaloff>:/whiteIcons/resources/icons_white/bar-chart.svg</iconset>
                   </property>
                   <property name="iconSize">
                    <size>
@@ -280,15 +279,16 @@ border-top-left-radius:20px;</string>
                  <widget class="QPushButton" name="NewProduct_bttn">
                   <property name="styleSheet">
                    <string notr="true">padding: 10px 5px;
-
-text-align:left;</string>
+background-color: #fefeff;
+text-align:left;
+border-top-left-radius:20px;</string>
                   </property>
                   <property name="text">
                    <string>Add Product</string>
                   </property>
                   <property name="icon">
                    <iconset resource="res.qrc">
-                    <normaloff>:/whiteIcons/resources/icons_white/plus.svg</normaloff>:/whiteIcons/resources/icons_white/plus.svg</iconset>
+                    <normaloff>:/blueIcons/resources/icons_blue/plus.svg</normaloff>:/blueIcons/resources/icons_blue/plus.svg</iconset>
                   </property>
                   <property name="iconSize">
                    <size>
@@ -663,13 +663,170 @@ background-color: rgb(37, 150, 190);</string>
              </item>
              <item>
               <widget class="QFrame" name="frame_6">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
                </property>
                <property name="frameShadow">
                 <enum>QFrame::Raised</enum>
                </property>
+               <layout class="QVBoxLayout" name="verticalLayout_2">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item alignment="Qt::AlignTop">
+                 <widget class="QFrame" name="frame">
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_3">
+                   <item>
+                    <widget class="QLineEdit" name="ProductName_line">
+                     <property name="font">
+                      <font>
+                       <family>Noto Sans CJK HK</family>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">    border: 1px solid #a9a9a9;
+    border-radius: 5px;
+    padding: 2px;
+    min-width: 70px;</string>
+                     </property>
+                     <property name="placeholderText">
+                      <string>Enter here the new product name:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="lineDescription">
+                     <property name="minimumSize">
+                      <size>
+                       <width>76</width>
+                       <height>100</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">    border: 1px solid #a9a9a9;
+    border-radius: 5px;
+    padding: 2px;
+    min-width: 70px;</string>
+                     </property>
+                     <property name="placeholderText">
+                      <string>Enter the new product description:</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item alignment="Qt::AlignTop">
+                 <widget class="QFrame" name="frame_2">
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_7">
+                   <item>
+                    <widget class="QDoubleSpinBox" name="doubleSpinBox">
+                     <property name="font">
+                      <font>
+                       <weight>50</weight>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QDoubleSpinBox {
+    border: 1px solid #a9a9a9;
+    border-radius: 5px;
+    padding: 2px;
+    min-width: 70px;
+	color: #2596be
+}
+
+
+
+</string>
+                     </property>
+                     <property name="buttonSymbols">
+                      <enum>QAbstractSpinBox::NoButtons</enum>
+                     </property>
+                     <property name="prefix">
+                      <string>Enter the Product Price: </string>
+                     </property>
+                     <property name="suffix">
+                      <string>€</string>
+                     </property>
+                     <property name="singleStep">
+                      <double>0.500000000000000</double>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QFrame" name="frame_3">
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_8">
+                   <item>
+                    <widget class="QPushButton" name="pushButton">
+                     <property name="styleSheet">
+                      <string notr="true">border-radius: 10px;
+border: none;
+background-color: rgb(37, 150, 190);</string>
+                     </property>
+                     <property name="text">
+                      <string>Insert a photo of the product</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="res.qrc">
+                       <normaloff>:/whiteIcons/resources/icons_white/camera.svg</normaloff>:/whiteIcons/resources/icons_white/camera.svg</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
               </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
              </item>
             </layout>
            </widget>

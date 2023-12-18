@@ -1,3 +1,5 @@
+
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Custom_Widgets.Widgets import QCustomSlideMenu
 
@@ -5,7 +7,7 @@ from Custom_Widgets.Widgets import QCustomSlideMenu
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1294, 669)
+        MainWindow.resize(1093, 644)
         MainWindow.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         MainWindow.setAttribute(QtCore.Qt.WA_TranslucentBackground)
         
@@ -18,6 +20,7 @@ class Ui_MainWindow(object):
 
         # Set the window position to the center
         MainWindow.setGeometry(center_x, center_y, MainWindow.width(), MainWindow.height())
+        
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -145,21 +148,21 @@ class Ui_MainWindow(object):
         self.verticalLayout_15.addWidget(self.home_bttn)
         self.Products_bttn = QtWidgets.QPushButton(self.frame_12)
         self.Products_bttn.setStyleSheet("padding: 10px 5px;\n"
-"background-color: #fefeff;\n"
-"text-align:left;\n"
-"border-top-left-radius:20px;")
+"\n"
+"text-align:left;")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/bar-chart.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/whiteIcons/resources/icons_white/bar-chart.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Products_bttn.setIcon(icon1)
         self.Products_bttn.setIconSize(QtCore.QSize(24, 24))
         self.Products_bttn.setObjectName("Products_bttn")
         self.verticalLayout_15.addWidget(self.Products_bttn)
         self.NewProduct_bttn = QtWidgets.QPushButton(self.frame_12)
         self.NewProduct_bttn.setStyleSheet("padding: 10px 5px;\n"
-"\n"
-"text-align:left;")
+"background-color: #fefeff;\n"
+"text-align:left;\n"
+"border-top-left-radius:20px;")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(":/whiteIcons/resources/icons_white/plus.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/plus.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.NewProduct_bttn.setIcon(icon2)
         self.NewProduct_bttn.setIconSize(QtCore.QSize(24, 24))
         self.NewProduct_bttn.setObjectName("NewProduct_bttn")
@@ -339,10 +342,88 @@ class Ui_MainWindow(object):
         self.horizontalLayout_13.addWidget(self.check_bttn)
         self.verticalLayout_9.addWidget(self.frame_5, 0, QtCore.Qt.AlignTop)
         self.frame_6 = QtWidgets.QFrame(self.widget_6)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frame_6.sizePolicy().hasHeightForWidth())
+        self.frame_6.setSizePolicy(sizePolicy)
         self.frame_6.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_6.setObjectName("frame_6")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.frame_6)
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.frame = QtWidgets.QFrame(self.frame_6)
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.frame)
+        self.verticalLayout_3.setObjectName("verticalLayout_3")
+        self.ProductName_line = QtWidgets.QLineEdit(self.frame)
+        font = QtGui.QFont()
+        font.setFamily("Noto Sans CJK HK")
+        self.ProductName_line.setFont(font)
+        self.ProductName_line.setStyleSheet("    border: 1px solid #a9a9a9;\n"
+"    border-radius: 5px;\n"
+"    padding: 2px;\n"
+"    min-width: 70px;")
+        self.ProductName_line.setObjectName("ProductName_line")
+        self.verticalLayout_3.addWidget(self.ProductName_line)
+        self.lineDescription = QtWidgets.QLineEdit(self.frame)
+        self.lineDescription.setMinimumSize(QtCore.QSize(76, 100))
+        self.lineDescription.setStyleSheet("    border: 1px solid #a9a9a9;\n"
+"    border-radius: 5px;\n"
+"    padding: 2px;\n"
+"    min-width: 70px;")
+        self.lineDescription.setObjectName("lineDescription")
+        self.verticalLayout_3.addWidget(self.lineDescription)
+        self.verticalLayout_2.addWidget(self.frame, 0, QtCore.Qt.AlignTop)
+        self.frame_2 = QtWidgets.QFrame(self.frame_6)
+        self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_2.setObjectName("frame_2")
+        self.horizontalLayout_7 = QtWidgets.QHBoxLayout(self.frame_2)
+        self.horizontalLayout_7.setObjectName("horizontalLayout_7")
+        self.doubleSpinBox = QtWidgets.QDoubleSpinBox(self.frame_2)
+        font = QtGui.QFont()
+        font.setBold(False)
+        font.setWeight(50)
+        self.doubleSpinBox.setFont(font)
+        self.doubleSpinBox.setStyleSheet("QDoubleSpinBox {\n"
+"    border: 1px solid #a9a9a9;\n"
+"    border-radius: 5px;\n"
+"    padding: 2px;\n"
+"    min-width: 70px;\n"
+"    color: #2596be\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"")
+        self.doubleSpinBox.setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
+        self.doubleSpinBox.setSingleStep(0.5)
+        self.doubleSpinBox.setObjectName("doubleSpinBox")
+        self.horizontalLayout_7.addWidget(self.doubleSpinBox)
+        self.verticalLayout_2.addWidget(self.frame_2, 0, QtCore.Qt.AlignTop)
+        self.frame_3 = QtWidgets.QFrame(self.frame_6)
+        self.frame_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_3.setObjectName("frame_3")
+        self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.frame_3)
+        self.horizontalLayout_8.setObjectName("horizontalLayout_8")
+        self.pushButton = QtWidgets.QPushButton(self.frame_3)
+        self.pushButton.setStyleSheet("border-radius: 10px;\n"
+"border: none;\n"
+"background-color: rgb(37, 150, 190);")
+        icon9 = QtGui.QIcon()
+        icon9.addPixmap(QtGui.QPixmap(":/whiteIcons/resources/icons_white/camera.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButton.setIcon(icon9)
+        self.pushButton.setObjectName("pushButton")
+        self.horizontalLayout_8.addWidget(self.pushButton)
+        self.verticalLayout_2.addWidget(self.frame_3)
         self.verticalLayout_9.addWidget(self.frame_6)
+        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_9.addItem(spacerItem)
         self.horizontalLayout_12.addWidget(self.widget_6)
         self.verticalLayout.addWidget(self.widget_4)
         self.horizontalLayout.addWidget(self.mainBody)
@@ -392,15 +473,15 @@ class Ui_MainWindow(object):
         self.label_18.setObjectName("label_18")
         self.verticalLayout_18.addWidget(self.label_18, 0, QtCore.Qt.AlignHCenter)
         self.Profile_bttn = QtWidgets.QPushButton(self.frame_13)
-        icon9 = QtGui.QIcon()
-        icon9.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/pen-tool.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.Profile_bttn.setIcon(icon9)
+        icon10 = QtGui.QIcon()
+        icon10.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/pen-tool.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.Profile_bttn.setIcon(icon10)
         self.Profile_bttn.setObjectName("Profile_bttn")
         self.verticalLayout_18.addWidget(self.Profile_bttn)
         self.pushButton_logout = QtWidgets.QPushButton(self.frame_13)
-        icon10 = QtGui.QIcon()
-        icon10.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/power.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton_logout.setIcon(icon10)
+        icon11 = QtGui.QIcon()
+        icon11.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/power.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButton_logout.setIcon(icon11)
         self.pushButton_logout.setObjectName("pushButton_logout")
         self.verticalLayout_18.addWidget(self.pushButton_logout)
         self.verticalLayout_17.addWidget(self.frame_13, 0, QtCore.Qt.AlignTop)
@@ -422,6 +503,11 @@ class Ui_MainWindow(object):
         self.label.setText(_translate("MainWindow", "Dashboard"))
         self.lineEdit.setPlaceholderText(_translate("MainWindow", "Search Something"))
         self.label_15.setText(_translate("MainWindow", "New Product"))
+        self.ProductName_line.setPlaceholderText(_translate("MainWindow", "Enter here the new product name:"))
+        self.lineDescription.setPlaceholderText(_translate("MainWindow", "Enter the new product description:"))
+        self.doubleSpinBox.setPrefix(_translate("MainWindow", "Enter the Product Price: "))
+        self.doubleSpinBox.setSuffix(_translate("MainWindow", "€"))
+        self.pushButton.setText(_translate("MainWindow", "Insert a photo of the product"))
         self.label_20.setText(_translate("MainWindow", "AdminName"))
         self.label_19.setText(_translate("MainWindow", "Admin"))
         self.Profile_bttn.setText(_translate("MainWindow", "My Profile"))
