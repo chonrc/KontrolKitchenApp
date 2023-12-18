@@ -9,6 +9,7 @@ class WindowController:
         self.app = app
         self.login_controller = None
         self.admin_controller = None
+        self.NewProduct_controller = None
         self.show_login_controller()
 
     def show_login_controller(self):
