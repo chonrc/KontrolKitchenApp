@@ -7,6 +7,7 @@ class AdminService(Admin):
 
         # Hash a password for the first time, with a randomly-generated salt
         hashed = bcrypt.hashpw(password, bcrypt.gensalt())
+        print(hashed)
 
 
         super().__init__(username, hashed, user_id=None) 

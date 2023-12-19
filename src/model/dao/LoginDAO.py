@@ -2,8 +2,7 @@ from model.services.AdminService import AdminService
 from model.services.ConnectionService import Connection
 import sqlite3
 import os
-
-import os
+import bcrypt
 
 current_dir = os.getcwd()
 
@@ -35,3 +34,30 @@ class LoginDao:
         finally:
             self.db.close_connection()
             print("The SQLite connection is closed")
+
+    def add_new_user(self, username, password):
+        try:
+            self.db.open_connection()
+
+            # Encode and hash the password
+            password = password.encode('utf-8')
+            hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
+
+            # Prepare the insert query
+            query = "INSERT INTO Administrators (username, password) VALUES (?, ?)"
+
+            # Execute the query
+            self.db.cursor.execute(query, (username, hashed_password))
+
+            # Commit the changes
+            self.db.connection.commit()
+
+            print("New user added successfully")
+
+        except sqlite3.Error as error:
+            print("Error while adding new user", error)
+
+        finally:
+            self.db.close_connection()
+            print("The SQLite connection is closed")
+
