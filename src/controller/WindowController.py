@@ -2,15 +2,22 @@ from PyQt5.QtWidgets import QApplication, QWidget
 from controller.Login_controller import LoginController
 from controller.Admin_controller import AdminController
 from controller.NewProduct_controller import NewProduct_controller
+from controller.FirstWindowController import FirstWindowController
 
 class WindowController:
     def __init__(self, app):
         super().__init__()
         self.app = app
+        self.first_controller = None
         self.login_controller = None
         self.admin_controller = None
         self.NewProduct_controller = None
-        self.show_login_controller()
+        self.show_FirstWindow()
+
+
+
+    def show_FirstWindow(self):
+        self.first_controller = FirstWindowController(self)
 
     def show_login_controller(self):
         self.login_controller = LoginController(self)

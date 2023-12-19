@@ -16,6 +16,9 @@ class NewProduct_controller(QWidget):
         loadJsonStyle(self, self.ui, jsonFiles = { "src/view/style.json"})
         self.window.show()
 
+
+
+    
     def logout(self):
         self.window_controller.closeAll()
 
