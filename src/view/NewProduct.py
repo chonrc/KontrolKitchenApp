@@ -1,8 +1,6 @@
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Custom_Widgets.Widgets import QCustomSlideMenu
-
+from PyQt5.QtWidgets import QFileDialog
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -404,22 +402,22 @@ class Ui_MainWindow(object):
         self.doubleSpinBox.setSingleStep(0.5)
         self.doubleSpinBox.setObjectName("doubleSpinBox")
         self.horizontalLayout_7.addWidget(self.doubleSpinBox)
-        self.verticalLayout_2.addWidget(self.frame_2, 0, QtCore.Qt.AlignTop)
+        self.verticalLayout_2.addWidget(self.frame_2)
         self.frame_3 = QtWidgets.QFrame(self.frame_6)
         self.frame_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_3.setObjectName("frame_3")
         self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.frame_3)
         self.horizontalLayout_8.setObjectName("horizontalLayout_8")
-        self.pushButton = QtWidgets.QPushButton(self.frame_3)
-        self.pushButton.setStyleSheet("border-radius: 10px;\n"
+        self.photo_bttn = QtWidgets.QPushButton(self.frame_3)
+        self.photo_bttn.setStyleSheet("border-radius: 10px;\n"
 "border: none;\n"
 "background-color: rgb(37, 150, 190);")
         icon9 = QtGui.QIcon()
         icon9.addPixmap(QtGui.QPixmap(":/whiteIcons/resources/icons_white/camera.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton.setIcon(icon9)
-        self.pushButton.setObjectName("pushButton")
-        self.horizontalLayout_8.addWidget(self.pushButton)
+        self.photo_bttn.setIcon(icon9)
+        self.photo_bttn.setObjectName("photo_bttn")
+        self.horizontalLayout_8.addWidget(self.photo_bttn)
         self.verticalLayout_2.addWidget(self.frame_3)
         self.verticalLayout_9.addWidget(self.frame_6)
         spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
@@ -507,9 +505,14 @@ class Ui_MainWindow(object):
         self.lineDescription.setPlaceholderText(_translate("MainWindow", "Enter the new product description:"))
         self.doubleSpinBox.setPrefix(_translate("MainWindow", "Enter the Product Price: "))
         self.doubleSpinBox.setSuffix(_translate("MainWindow", "€"))
-        self.pushButton.setText(_translate("MainWindow", "Insert a photo of the product"))
+        self.photo_bttn.setText(_translate("MainWindow", "Insert a photo of the product"))
         self.label_20.setText(_translate("MainWindow", "AdminName"))
         self.label_19.setText(_translate("MainWindow", "Admin"))
         self.Profile_bttn.setText(_translate("MainWindow", "My Profile"))
         self.pushButton_logout.setText(_translate("MainWindow", " Logout"))
 
+    def selectPhoto(self):
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        file_name, _ = QFileDialog.getOpenFileName(None, "Choose Photo", "", "Image Files (*.png *.jpg *.jpeg *.bmp *.gif);;All Files (*)", options=options)
+        return file_name

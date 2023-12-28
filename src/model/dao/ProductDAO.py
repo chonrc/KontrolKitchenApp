@@ -13,13 +13,13 @@ class ProductDAO:
         self.db = Connection(db_relative_path)
 
 
-    def add_new_Product(self, name, description, price):
+    def add_new_Product(self, name, description, price, image):
         try:
             self.db.open_connection()
 
-            query = "INSERT INTO Products (name, description, price, quantity) VALUES (?, ?, ?, 1)"
+            query = "INSERT INTO Products (name, description, price, quantity, image) VALUES (?, ?, ?, 1, ?)"
 
-            self.db.cursor.execute(query, (name, description , price))
+            self.db.cursor.execute(query, (name, description , price, image))
 
             self.db.connection.commit()
 

@@ -16,6 +16,8 @@ class NewProduct_controller(QWidget):
         self.ui.pushButton_logout.clicked.connect(self.logout)
         self.ui.home_bttn.clicked.connect(self.home)
         self.ui.check_bttn.clicked.connect(self.submit)
+        self.ui.photo_bttn.clicked.connect(self.submit_photo)
+
         loadJsonStyle(self, self.ui, jsonFiles = { "src/view/style.json"})
         self.window.show()
 
@@ -33,5 +35,17 @@ class NewProduct_controller(QWidget):
         self.dao.add_new_Product(
             self.ui.ProductName_line.text(),
             self.ui.lineDescription.text(),
-            self.ui.doubleSpinBox.value()  
+            self.ui.doubleSpinBox.value(),
+            self.global_blob 
         )
+
+    def submit_photo(self):
+        file_name = self.ui.selectPhoto()
+        
+        if file_name:
+            # Read the file and convert it to bytes
+            with open(file_name, 'rb') as file:
+                file_blob = file.read()
+
+            # Assign the blob to the global variable
+            self.global_blob = file_blob
