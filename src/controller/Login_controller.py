@@ -1,8 +1,7 @@
 import bcrypt
 from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget
 from view.Login import Ui_MainWindow
-from model.dao.LoginDAO import *
-from PyQt5.QtCore import QObject, pyqtSignal, pyqtSlot
+from model.dao.LoginDAO import LoginDao
 
 class LoginController(QWidget):
     
@@ -10,7 +9,7 @@ class LoginController(QWidget):
     def __init__(self, window_controller):
         super().__init__()
         self.window_controller = window_controller
-        self.model = LoginDao()
+        self.dao = LoginDao()
 
         
         self.window = QMainWindow()
@@ -25,7 +24,7 @@ class LoginController(QWidget):
         username = self.ui.lineUser.text()
         password = self.ui.linePassword.text()
 
-        admin_service = self.model.check_username_existence(username)
+        admin_service = self.dao.check_username_existence(username)
 
         # Check that an unhashed password matches one that has previously been hashed
         if admin_service is not None and bcrypt.checkpw(password.encode('utf-8'), admin_service.password) and username == admin_service.username:
