@@ -1,4 +1,4 @@
-from model.services.AdminService import AdminService
+from model.dto.AdminDTO import AdminDTO
 from model.services.ConnectionService import Connection
 import sqlite3
 import os
@@ -24,7 +24,7 @@ class LoginDao:
             result = self.db.cursor.fetchone()
 
             if result:
-                admin_service = AdminService(username=result[0], password=result[1])
+                admin_service = AdminDTO(username=result[0], password=result[1])
                 return admin_service
             else:
                 return None
