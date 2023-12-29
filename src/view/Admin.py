@@ -669,40 +669,41 @@ class Ui_MainWindow(object):
 
 
     def display_products(self, product_list):
-        frame_products_layout = QtWidgets.QVBoxLayout(self.frame_products)
-        self.frame_products.setLayout(frame_products_layout)
 
-        # Create a QTableWidget
-        table_widget = QtWidgets.QTableWidget(self.frame_products)
-        table_widget.setRowCount(len(product_list))
-        table_widget.setColumnCount(2)  # Assuming two columns for product name and quantity
 
-        # Set table headers
-        table_widget.setHorizontalHeaderLabels(["Product Name", "Quantity"])
+        # Create layout for products
+        products_layout = QtWidgets.QVBoxLayout(self.frame_products)
 
-        # Populate the table with product information
-        for row, product in enumerate(product_list):
-                item_name = QtWidgets.QTableWidgetItem(product.name)
-                item_quantity = QtWidgets.QTableWidgetItem(str(product.quantity))
+        # Create labels for column headers
+        header_layout = QtWidgets.QHBoxLayout()
+        label_name = QtWidgets.QLabel("Product Name")
+        label_quantity = QtWidgets.QLabel("Quantity")
 
-                table_widget.setItem(row, 0, item_name)
-                table_widget.setItem(row, 1, item_quantity)
-
-        # Set the font for the table items
         font = QtGui.QFont()
-        font.setPointSize(10)
-        table_widget.setFont(font)
+        font.setBold(True)
+        label_name.setFont(font)
+        label_quantity.setFont(font)
 
-        # Adjust column widths to fit the content
-        table_widget.resizeColumnsToContents()
+        header_layout.addWidget(label_name)
+        header_layout.addWidget(label_quantity)
 
-        # Set a fixed size for the table
-        table_widget.setFixedSize(table_widget.horizontalHeader().length() + 20, table_widget.verticalHeader().length() + 20)
+        # Add header layout to the products layout
+        products_layout.addLayout(header_layout)
 
-        # Center the table in the frame
-        spacer_top = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        spacer_bottom = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        # Add products to the layout
+        for product in product_list:
+            product_layout = QtWidgets.QHBoxLayout()
 
-        frame_products_layout.addItem(spacer_top)
-        frame_products_layout.addWidget(table_widget, QtCore.Qt.AlignCenter)
-        frame_products_layout.addItem(spacer_bottom)
+            # Create labels for product information
+            label_name = QtWidgets.QLabel(product.name)
+            label_quantity = QtWidgets.QLabel(str(product.quantity))
+
+            # Add labels to product layout
+            product_layout.addWidget(label_name)
+            product_layout.addWidget(label_quantity)
+
+            # Add product layout to products layout
+            products_layout.addLayout(product_layout)
+
+        # Set layout to the frame
+        self.frame_products.setLayout(products_layout)
