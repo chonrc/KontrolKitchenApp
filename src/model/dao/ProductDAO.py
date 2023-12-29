@@ -1,7 +1,7 @@
 from model.services.ConnectionService import Connection
 import sqlite3
 import os
-import bcrypt
+from model.entities.Product import Product
 
 current_dir = os.getcwd()
 
@@ -32,3 +32,26 @@ class ProductDAO:
             self.db.close_connection()
             print("The SQLite connection is closed")
 
+    def getAllProducts(self):
+        try:
+            self.db.open_connection()
+
+            query = "SELECT * FROM Products"
+            self.db.cursor.execute(query)
+
+            products_data = self.db.cursor.fetchall()
+
+            products_list = []
+            for product_data in products_data:
+                product = Product(*product_data)
+                products_list.append(product)
+                
+            return products_list
+
+        except sqlite3.Error as error:
+            print("Error while fetching all products", error)
+            return []
+
+        finally:
+            self.db.close_connection()
+            print("The SQLite connection is closed")

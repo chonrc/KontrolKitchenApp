@@ -3,6 +3,7 @@ from controller.Login_controller import LoginController
 from controller.Admin_controller import AdminController
 from controller.NewProduct_controller import NewProduct_controller
 from controller.FirstWindowController import FirstWindowController
+from controller.Product_controller import Product_controller
 
 class WindowController:
     def __init__(self, app):
@@ -12,6 +13,7 @@ class WindowController:
         self.login_controller = None
         self.admin_controller = None
         self.NewProduct_controller = None
+        
         self.show_FirstWindow()
 
 
@@ -28,13 +30,8 @@ class WindowController:
     def show_NewProduct(self):
         self.NewProduct_controller = NewProduct_controller(self)
 
+    def show_Products(self):
+        self.product_controller = Product_controller(self)
+
     def closeAll(self):
-        # Close all windows
-        if self.login_controller:
-            self.login_controller.close()
-        if self.admin_controller:
-            self.admin_controller.close()
-        if self.NewProduct_controller:
-            self.NewProduct_controller.close()
-        # Finish the execution
         self.app.quit()

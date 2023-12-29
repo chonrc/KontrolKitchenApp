@@ -12,6 +12,7 @@ class AdminController(QWidget):
 
         self.ui.pushButton_logout.clicked.connect(self.logout)
         self.ui.NewProduct_bttn.clicked.connect(self.newProduct)
+        self.ui.Products_bttn.clicked.connect(self.products)
 
         loadJsonStyle(self, self.ui, jsonFiles = { "src/view/style.json"})
         self.window.show()
@@ -22,3 +23,7 @@ class AdminController(QWidget):
     def newProduct(self):
         self.window.close()
         self.window_controller.show_NewProduct()
+
+    def products(self):
+        self.window.close()
+        self.window_controller.show_Products()
