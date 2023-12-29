@@ -498,6 +498,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_12 = QtWidgets.QHBoxLayout(self.widget_4)
         self.horizontalLayout_12.setObjectName("horizontalLayout_12")
         self.widget_6 = QtWidgets.QWidget(self.widget_4)
+
+
         self.widget_6.setStyleSheet("background-color: white;\n"
 "border-radius:20px")
         self.widget_6.setObjectName("widget_6")
@@ -534,6 +536,7 @@ class Ui_MainWindow(object):
         self.frame_products.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_products.setObjectName("frame_products")
         self.verticalLayout_9.addWidget(self.frame_products)
+
         self.horizontalLayout_12.addWidget(self.widget_6)
         self.widget_7 = QtWidgets.QWidget(self.widget_4)
         self.widget_7.setStyleSheet("border: none;\n"
@@ -664,19 +667,42 @@ class Ui_MainWindow(object):
         self.Profile_bttn.setText(_translate("MainWindow", "My Profile"))
         self.pushButton_logout.setText(_translate("MainWindow", " Logout"))
 
+
     def display_products(self, product_list):
         frame_products_layout = QtWidgets.QVBoxLayout(self.frame_products)
         self.frame_products.setLayout(frame_products_layout)
 
-        # Create and add QLabel widgets for each product
-        for product in product_list:
-            
-            product_label = QtWidgets.QLabel(self.frame_products)
-            font = QtGui.QFont()
-            font.setPointSize(10)
-            product_label.setFont(font)
-            product_label.setText(f"{product.name}: {product.quantity}")
-            self.frame_products.layout().addWidget(product_label)
+        # Create a QTableWidget
+        table_widget = QtWidgets.QTableWidget(self.frame_products)
+        table_widget.setRowCount(len(product_list))
+        table_widget.setColumnCount(2)  # Assuming two columns for product name and quantity
 
-        # Update the layout
-        self.frame_products.layout().update()
+        # Set table headers
+        table_widget.setHorizontalHeaderLabels(["Product Name", "Quantity"])
+
+        # Populate the table with product information
+        for row, product in enumerate(product_list):
+                item_name = QtWidgets.QTableWidgetItem(product.name)
+                item_quantity = QtWidgets.QTableWidgetItem(str(product.quantity))
+
+                table_widget.setItem(row, 0, item_name)
+                table_widget.setItem(row, 1, item_quantity)
+
+        # Set the font for the table items
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        table_widget.setFont(font)
+
+        # Adjust column widths to fit the content
+        table_widget.resizeColumnsToContents()
+
+        # Set a fixed size for the table
+        table_widget.setFixedSize(table_widget.horizontalHeader().length() + 20, table_widget.verticalHeader().length() + 20)
+
+        # Center the table in the frame
+        spacer_top = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        spacer_bottom = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+
+        frame_products_layout.addItem(spacer_top)
+        frame_products_layout.addWidget(table_widget, QtCore.Qt.AlignCenter)
+        frame_products_layout.addItem(spacer_bottom)

@@ -21,6 +21,7 @@ class AdminController(QWidget):
         self.ui.pushButton_logout.clicked.connect(self.logout)
         self.ui.NewProduct_bttn.clicked.connect(self.newProduct)
         self.ui.Products_bttn.clicked.connect(self.products)
+        self.ui.Lastest_bttn.clicked.connect(self.products)
 
         self.ui.label_total_products.setText(str(self.dao.get_number_of_products()))
         self.ui.display_products(self.dao.get_products_dto())

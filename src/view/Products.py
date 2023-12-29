@@ -409,86 +409,96 @@ class ProductWidget(QtWidgets.QWidget):
         super().__init__()
 
         # Set the background color
-        self.setStyleSheet("background-color: #fefeff; color: black;")
+        self.setStyleSheet("background-color: #f8f8f8; color: #333;")
 
         # Create a container frame with a layout
         container_frame = QtWidgets.QFrame(self)
+        container_frame.setObjectName("productFrame")  # Set object name for styling
         container_layout = QtWidgets.QVBoxLayout(container_frame)
-
-        # Set the border style and rounded corners for the container frame
-        border_style = "border: 1px solid black; border-radius: 10px;"
-        container_frame.setStyleSheet(border_style)
+        container_layout.setContentsMargins(10, 10, 10, 10)
 
         # Assuming product.image is a bytes object containing image data
         image_data = product.image
 
         # Check if image_data is not None
         if image_data is not None:
-        # Convert bytes to a QByteArray
-                qbytearray = QtCore.QByteArray(image_data)
+            # Convert bytes to a QByteArray
+            qbytearray = QtCore.QByteArray(image_data)
 
-        # Create a QPixmap from the QByteArray
-                pixmap = QtGui.QPixmap()
-                pixmap.loadFromData(qbytearray)
+            # Create a QPixmap from the QByteArray
+            pixmap = QtGui.QPixmap()
+            pixmap.loadFromData(qbytearray)
 
-                # Set up the photo_label with the QPixmap
-                photo_label = QtWidgets.QLabel()
-                photo_label.setPixmap(pixmap)
-                container_layout.addWidget(photo_label)
+            # Set up the photo_label with the QPixmap
+            photo_label = QtWidgets.QLabel()
+            photo_label.setPixmap(pixmap.scaledToWidth(150))  # Adjust the width as needed
+            photo_label.setAlignment(QtCore.Qt.AlignCenter)
+            container_layout.addWidget(photo_label)
         else:
-                # If image_data is None, display a message in the label
-                photo_label = QtWidgets.QLabel("There is no photo.")
-                container_layout.addWidget(photo_label)
+            # If image_data is None, display a message in the label
+            no_photo_label = QtWidgets.QLabel("No Photo Available")
+            no_photo_label.setAlignment(QtCore.Qt.AlignCenter)
+            no_photo_label.setStyleSheet("font-style: italic; color: #777;")
+            container_layout.addWidget(no_photo_label)
 
         # Name
+        name_label = QtWidgets.QLabel("Name:")
+        name_label.setStyleSheet("font-weight: bold; color: #333;")
+        container_layout.addWidget(name_label)
         self.name_line_edit = QtWidgets.QLineEdit(product.name)
-        self.name_line_edit.setReadOnly(True)
-        self.name_line_edit.setStyleSheet("color: black;")  # Set text color to black
+        self.name_line_edit.setStyleSheet("color: #333;")
         container_layout.addWidget(self.name_line_edit)
 
         # Description
+        description_label = QtWidgets.QLabel("Description:")
+        description_label.setStyleSheet("font-weight: bold; color: #333;")
+        container_layout.addWidget(description_label)
         self.description_line_edit = QtWidgets.QLineEdit(product.description)
-        self.description_line_edit.setReadOnly(True)
-        self.description_line_edit.setStyleSheet("color: black;")  # Set text color to black
+        self.description_line_edit.setStyleSheet("color: #333;")
         container_layout.addWidget(self.description_line_edit)
 
         # Price
-        price_layout = QtWidgets.QHBoxLayout()
         price_label = QtWidgets.QLabel("Price:")
-        price_label.setStyleSheet("color: black;")  # Set text color to black
+        price_label.setStyleSheet("font-weight: bold; color: #333;")
+        container_layout.addWidget(price_label)
         self.price_line_edit = QtWidgets.QLineEdit(str(product.price))
-        self.price_line_edit.setReadOnly(True)
-        self.price_line_edit.setStyleSheet("color: black;")  # Set text color to black
-        price_layout.addWidget(price_label)
-        price_layout.addWidget(self.price_line_edit)
-        container_layout.addLayout(price_layout)
+        self.price_line_edit.setStyleSheet("color: #333;")
+        container_layout.addWidget(self.price_line_edit)
 
         # Quantity
-        quantity_layout = QtWidgets.QHBoxLayout()
         quantity_label = QtWidgets.QLabel("Quantity:")
-        quantity_label.setStyleSheet("color: black;")  # Set text color to black
+        quantity_label.setStyleSheet("font-weight: bold; color: #333;")
+        container_layout.addWidget(quantity_label)
         self.quantity_line_edit = QtWidgets.QLineEdit(str(product.quantity))
-        self.quantity_line_edit.setReadOnly(True)
-        self.quantity_line_edit.setStyleSheet("color: black;")  # Set text color to black
-        quantity_layout.addWidget(quantity_label)
-        quantity_layout.addWidget(self.quantity_line_edit)
-        container_layout.addLayout(quantity_layout)
+        self.quantity_line_edit.setStyleSheet("color: #333;")
+        container_layout.addWidget(self.quantity_line_edit)
 
         # Set up the layout for the main widget
         main_layout = QtWidgets.QVBoxLayout()
         main_layout.addWidget(container_frame)
 
-        self.name_line_edit.setReadOnly(False)
-        self.description_line_edit.setReadOnly(False)
-        self.price_line_edit.setReadOnly(False)
-        self.quantity_line_edit.setReadOnly(False)
+        
 
-        # Set validator to accept only numbers
-        price_validator = QtGui.QDoubleValidator(self)
-        price_validator.setNotation(QtGui.QDoubleValidator.StandardNotation)
-        self.price_line_edit.setValidator(price_validator)
+        # Button Layout
+        button_layout = QtWidgets.QHBoxLayout()
 
-        quantity_validator = QtGui.QIntValidator(self)
-        self.quantity_line_edit.setValidator(quantity_validator)
+        # Delete Button
+        delete_button = QtWidgets.QPushButton("Delete")
+        delete_button.setStyleSheet("background-color: #cc0000; color: white;")
+        button_layout.addWidget(delete_button, alignment=QtCore.Qt.AlignLeft)
+
+        # Modify Button
+        modify_button = QtWidgets.QPushButton("Modify")
+        modify_button.setStyleSheet("background-color: #4CAF50; color: white;")
+        button_layout.addWidget(modify_button, alignment=QtCore.Qt.AlignRight)
+
+        # Add the button layout to the container layout
+        container_layout.addLayout(button_layout)
 
         self.setLayout(main_layout)
+
+
+
+       
+      
+     
