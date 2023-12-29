@@ -663,3 +663,20 @@ class Ui_MainWindow(object):
         self.label_19.setText(_translate("MainWindow", "Admin"))
         self.Profile_bttn.setText(_translate("MainWindow", "My Profile"))
         self.pushButton_logout.setText(_translate("MainWindow", " Logout"))
+
+    def display_products(self, product_list):
+        frame_products_layout = QtWidgets.QVBoxLayout(self.frame_products)
+        self.frame_products.setLayout(frame_products_layout)
+
+        # Create and add QLabel widgets for each product
+        for product in product_list:
+            
+            product_label = QtWidgets.QLabel(self.frame_products)
+            font = QtGui.QFont()
+            font.setPointSize(10)
+            product_label.setFont(font)
+            product_label.setText(f"{product.name}: {product.quantity}")
+            self.frame_products.layout().addWidget(product_label)
+
+        # Update the layout
+        self.frame_products.layout().update()
