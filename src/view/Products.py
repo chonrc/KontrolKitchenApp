@@ -419,11 +419,26 @@ class ProductWidget(QtWidgets.QWidget):
         border_style = "border: 1px solid black; border-radius: 10px;"
         container_frame.setStyleSheet(border_style)
 
-        # Photo
-        photo_label = QtWidgets.QLabel()
-        pixmap = QtGui.QPixmap(product.image)
-        photo_label.setPixmap(pixmap)
-        container_layout.addWidget(photo_label)
+        # Assuming product.image is a bytes object containing image data
+        image_data = product.image
+
+        # Check if image_data is not None
+        if image_data is not None:
+        # Convert bytes to a QByteArray
+                qbytearray = QtCore.QByteArray(image_data)
+
+        # Create a QPixmap from the QByteArray
+                pixmap = QtGui.QPixmap()
+                pixmap.loadFromData(qbytearray)
+
+                # Set up the photo_label with the QPixmap
+                photo_label = QtWidgets.QLabel()
+                photo_label.setPixmap(pixmap)
+                container_layout.addWidget(photo_label)
+        else:
+                # If image_data is None, display a message in the label
+                photo_label = QtWidgets.QLabel("There is no photo.")
+                container_layout.addWidget(photo_label)
 
         # Name
         self.name_line_edit = QtWidgets.QLineEdit(product.name)

@@ -23,6 +23,7 @@ class NewProduct_controller(QWidget):
         self.ui.check_bttn.clicked.connect(self.submit)
         self.ui.photo_bttn.clicked.connect(self.submit_photo)
         self.ui.Products_bttn.clicked.connect(self.products)
+        self.ui.clear_bttn.clicked.connect(self.clear)
 
         loadJsonStyle(self, self.ui, jsonFiles = { "src/view/style.json"})
         self.window.show()
@@ -45,6 +46,15 @@ class NewProduct_controller(QWidget):
             self.global_blob 
         )
 
+        self.clear()
+
+    def clear(self):
+        self.ui.ProductName_line.clear() 
+        self.ui.lineDescription.clear()  
+        self.ui.doubleSpinBox.setValue(0.0)  
+        self.global_blob = None
+
+         
     def products(self):
         self.window.close()
         self.products_pushed.emit()
