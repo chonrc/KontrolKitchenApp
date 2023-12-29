@@ -2,8 +2,14 @@ from PyQt5.QtWidgets import QMainWindow, QApplication
 from view.Products import Ui_MainWindow
 from Custom_Widgets.Widgets import *
 from model.dao.ProductDAO import ProductDAO
+from PyQt5.QtCore import pyqtSignal
 
 class Product_controller(QWidget):
+
+    home_pushed = pyqtSignal()
+    new_product_pushed = pyqtSignal()
+    logout_pushed  = pyqtSignal()
+
     def __init__(self, window_controller):
         super().__init__()
         self.window_controller = window_controller
@@ -25,12 +31,12 @@ class Product_controller(QWidget):
 
     
     def logout(self):
-        self.window_controller.closeAll()
+        self.logout_pushed.emit()
 
     def home(self):
         self.window.close()
-        self.window_controller.show_admin_controller()
+        self.home_pushed.emit()
 
     def newProduct(self):
         self.window.close()
-        self.window_controller.show_NewProduct()
+        self.new_product_pushed.emit()

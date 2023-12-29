@@ -2,9 +2,11 @@ import bcrypt
 from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget
 from view.FirstWindow import Ui_MainWindow
 from PyQt5.QtCore import QObject
+from PyQt5.QtCore import pyqtSignal
 
 class FirstWindowController(QWidget):
-    
+    nextwindow = pyqtSignal()
+
     def __init__(self, window_controller):
         super().__init__()
         self.window_controller = window_controller
@@ -24,4 +26,4 @@ class FirstWindowController(QWidget):
         
     def admin(self):
         self.window.close()
-        self.window_controller.show_login_controller()
+        self.nextwindow.emit()

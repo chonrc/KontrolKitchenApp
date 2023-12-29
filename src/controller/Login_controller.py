@@ -2,9 +2,11 @@ import bcrypt
 from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget
 from view.Login import Ui_MainWindow
 from model.dao.LoginDAO import LoginDao
+from PyQt5.QtCore import pyqtSignal
 
 class LoginController(QWidget):
-    
+    login_successful = pyqtSignal()
+
 
     def __init__(self, window_controller):
         super().__init__()
@@ -30,7 +32,7 @@ class LoginController(QWidget):
         if admin_service is not None and bcrypt.checkpw(password.encode('utf-8'), admin_service.password) and username == admin_service.username:
             print("It Matches!")            
             self.window.close() 
-            self.window_controller.show_admin_controller()
+            self.login_successful.emit() 
         else:
             print("It Does not Match :(")
             self.ui.show_error_message("Wrong Username or Password")

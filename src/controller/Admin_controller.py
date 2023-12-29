@@ -1,8 +1,13 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from view.Admin import Ui_MainWindow
 from Custom_Widgets.Widgets import *
+from PyQt5.QtCore import pyqtSignal
 
 class AdminController(QWidget):
+    new_product_pushed = pyqtSignal()
+    products_pushed = pyqtSignal()
+    logout_pushed  = pyqtSignal()
+
     def __init__(self, window_controller):
         super().__init__()
         self.window_controller = window_controller
@@ -18,12 +23,12 @@ class AdminController(QWidget):
         self.window.show()
 
     def logout(self):
-        self.window_controller.closeAll()
+        self.logout_pushed.emit()
 
     def newProduct(self):
         self.window.close()
-        self.window_controller.show_NewProduct()
+        self.new_product_pushed.emit()
 
     def products(self):
         self.window.close()
-        self.window_controller.show_Products()
+        self.products_pushed.emit()

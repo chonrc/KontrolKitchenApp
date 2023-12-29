@@ -9,29 +9,33 @@ class WindowController:
     def __init__(self, app):
         super().__init__()
         self.app = app
-        self.first_controller = None
-        self.login_controller = None
-        self.admin_controller = None
-        self.NewProduct_controller = None
-        
-        self.show_FirstWindow()
+        self.show_first_window()
 
-
-
-    def show_FirstWindow(self):
+    def show_first_window(self):
         self.first_controller = FirstWindowController(self)
+        self.first_controller.nextwindow.connect(self.show_login_controller)
 
     def show_login_controller(self):
         self.login_controller = LoginController(self)
+        self.login_controller.login_successful.connect(self.show_admin_controller)
 
     def show_admin_controller(self):
         self.admin_controller = AdminController(self)
+        self.admin_controller.logout_pushed.connect(self.close_all)
+        self.admin_controller.new_product_pushed.connect(self.show_new_product)
+        self.admin_controller.products_pushed.connect(self.show_products)
 
-    def show_NewProduct(self):
-        self.NewProduct_controller = NewProduct_controller(self)
+    def show_new_product(self):
+        self.new_product_controller = NewProduct_controller(self)
+        self.new_product_controller.logout_pushed.connect(self.close_all)
+        self.new_product_controller.home_pushed.connect(self.show_admin_controller)
+        self.new_product_controller.products_pushed.connect(self.show_products)
 
-    def show_Products(self):
+    def show_products(self):
         self.product_controller = Product_controller(self)
+        self.product_controller.logout_pushed.connect(self.close_all)
+        self.product_controller.home_pushed.connect(self.show_admin_controller)
+        self.product_controller.new_product_pushed.connect(self.show_new_product)
 
-    def closeAll(self):
+    def close_all(self):
         self.app.quit()
