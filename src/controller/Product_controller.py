@@ -24,11 +24,32 @@ class Product_controller(QWidget):
         self.ui.NewProduct_bttn.clicked.connect(self.newProduct)
 
         self.ui.setProducts(self.dao.getAllProducts())
+
+        for product_widget in self.ui.product_widgets:
+            product_widget.modify_clicked.connect(self.modifyProduct)
+            product_widget.delete_clicked.connect(self.deleteProduct)
+
         loadJsonStyle(self, self.ui, jsonFiles = { "src/view/style.json"})
         self.window.show()
 
 
+    def modifyProduct(self, product_widget):
+        product = product_widget.product
 
+        # Get values from the QLineEdit widgets in the ProductWidget
+        name = product_widget.name_line_edit.text()
+        description = product_widget.description_line_edit.text()
+        price = float(product_widget.price_line_edit.text())
+        quantity = int(product_widget.quantity_line_edit.text())
+
+        self.dao.update_product_by_id(product.getID(), name , description, price , quantity)
+        pass
+
+    def deleteProduct(self, product):
+        
+        self.dao.delete_product_by_id(product.getID())
+        self.ui.deleteProductWidget(product)
+        pass
     
     def logout(self):
         self.logout_pushed.emit()

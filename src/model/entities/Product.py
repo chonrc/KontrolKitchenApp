@@ -6,3 +6,7 @@ class Product:
         self.price = price
         self.quantity = quantity
         self.image = image
+
+    def getID(self):
+        return self.product_id
+

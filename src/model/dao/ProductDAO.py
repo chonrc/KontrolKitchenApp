@@ -98,3 +98,45 @@ class ProductDAO:
         finally:
             self.db.close_connection()
             print("The SQLite connection is closed")
+
+
+    def delete_product_by_id(self, product_id):
+        try:
+            self.db.open_connection()
+
+            query = "DELETE FROM Products WHERE productID = ?"
+            self.db.cursor.execute(query, (product_id,))
+
+            self.db.connection.commit()
+
+            print("Product deleted successfully")
+
+        except sqlite3.Error as error:
+            print("Error while deleting product by ID", error)
+
+        finally:
+            self.db.close_connection()
+            print("The SQLite connection is closed")
+
+    def update_product_by_id(self, product_id, name, description, price, quantity):
+        try:
+            self.db.open_connection()
+
+            query = """
+                    UPDATE Products 
+                    SET name = ?, description = ?, price = ?, quantity = ?
+                    WHERE productID = ?
+                    """
+
+            self.db.cursor.execute(query, (name, description, price, quantity, product_id))
+
+            self.db.connection.commit()
+
+            print("Product updated successfully")
+
+        except sqlite3.Error as error:
+            print("Error while updating product by ID", error)
+
+        finally:
+            self.db.close_connection()
+            print("The SQLite connection is closed")

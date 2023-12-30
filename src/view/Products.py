@@ -3,9 +3,12 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Custom_Widgets.Widgets import QCustomSlideMenu
 from PyQt5.QtWidgets import QScrollArea, QWidget, QVBoxLayout, QHBoxLayout,  QLabel, QLineEdit
+from PyQt5.QtCore import Qt, pyqtSignal
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
+        self.product_widgets = []
+
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1294, 669)
 
@@ -381,6 +384,7 @@ class Ui_MainWindow(object):
         self.pushButton_logout.setText(_translate("MainWindow", " Logout"))
         
     def setProducts(self, products):
+        
         scroll_area = QScrollArea(self.frame_6)
         scroll_area.setWidgetResizable(True)
         
@@ -393,7 +397,7 @@ class Ui_MainWindow(object):
         for product in products:
             product_widget = ProductWidget(product)
             scroll_layout.addWidget(product_widget)
-
+            self.product_widgets.append(product_widget)
         # Set the scroll area widget
         scroll_area.setWidget(scroll_widget)
 
@@ -403,10 +407,20 @@ class Ui_MainWindow(object):
 
         self.frame_6.setLayout(main_layout)
 
+    def deleteProductWidget(self, product):
+        for widget in self.product_widgets:
+            if widget.product == product:
+                widget.setParent(None)
+                self.product_widgets.remove(widget)
+                
 
 class ProductWidget(QtWidgets.QWidget):
+    
+    modify_clicked = pyqtSignal(object)  # Signal with the product as an argument
+    delete_clicked = pyqtSignal(object)  
     def __init__(self, product):
         super().__init__()
+        self.product = product
 
         # Set the background color
         self.setStyleSheet("background-color: #f8f8f8; color: #333;")
@@ -486,12 +500,13 @@ class ProductWidget(QtWidgets.QWidget):
         delete_button = QtWidgets.QPushButton("Delete")
         delete_button.setStyleSheet("background-color: #cc0000; color: white;")
         button_layout.addWidget(delete_button, alignment=QtCore.Qt.AlignLeft)
+        delete_button.clicked.connect(lambda: self.delete_clicked.emit(product))
 
         # Modify Button
         modify_button = QtWidgets.QPushButton("Modify")
         modify_button.setStyleSheet("background-color: #4CAF50; color: white;")
         button_layout.addWidget(modify_button, alignment=QtCore.Qt.AlignRight)
-
+        modify_button.clicked.connect(lambda: self.modify_clicked.emit(self))
         # Add the button layout to the container layout
         container_layout.addLayout(button_layout)
 
