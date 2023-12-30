@@ -5,7 +5,8 @@ from PyQt5.QtCore import QObject
 from PyQt5.QtCore import pyqtSignal
 
 class FirstWindowController(QWidget):
-    nextwindow = pyqtSignal()
+    adminwindow = pyqtSignal()
+    clientLoginwindow = pyqtSignal()
 
     def __init__(self, window_controller):
         super().__init__()
@@ -22,8 +23,9 @@ class FirstWindowController(QWidget):
         self.window.show()
 
     def user(self):
-        self.window_controller.closeAll()
+        self.window.close()
+        self.clientLoginwindow.emit()
         
     def admin(self):
         self.window.close()
-        self.nextwindow.emit()
+        self.adminwindow.emit()
