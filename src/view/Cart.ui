@@ -157,12 +157,12 @@ border: none;
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="deleteButton">
             <property name="font">
              <font>
               <pointsize>16</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
+              <weight>50</weight>
+              <bold>false</bold>
              </font>
             </property>
             <property name="styleSheet">
@@ -176,6 +176,33 @@ color: rgb(37, 150, 190);</string>
             <property name="icon">
              <iconset resource="res.qrc">
               <normaloff>:/blueIcons/resources/icons_blue/slash.svg</normaloff>:/blueIcons/resources/icons_blue/slash.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>32</width>
+              <height>32</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="payButton">
+            <property name="font">
+             <font>
+              <pointsize>16</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(239, 249, 254);
+border: none;
+color: rgb(37, 150, 190);</string>
+            </property>
+            <property name="text">
+             <string>Pay</string>
+            </property>
+            <property name="icon">
+             <iconset resource="res.qrc">
+              <normaloff>:/blueIcons/resources/icons_blue/thumbs-up.svg</normaloff>:/blueIcons/resources/icons_blue/thumbs-up.svg</iconset>
             </property>
             <property name="iconSize">
              <size>

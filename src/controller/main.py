@@ -12,6 +12,7 @@ current_dir = os.getcwd()
 db_relative_path = os.path.join(current_dir, 'db')
 print("Database is located here: ", db_relative_path)
 sys.path.append(parent_directory)
+
 from PyQt5.QtCore import pyqtSignal, pyqtSlot
 
 from controller.Login_controller import LoginController 

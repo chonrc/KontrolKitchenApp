@@ -51,8 +51,8 @@ class WindowController:
         self.clientMain.logout_pushed.connect(self.show_first_window)
         self.clientMain.cart_pushed.connect(self.show_cartWindow)
 
-    def show_cartWindow(self):
-        self.Cart_controller = CartController(self)
+    def show_cartWindow(self, cart):
+        self.Cart_controller = CartController(self, cart)
         self.Cart_controller.logout_pushed.connect(self.show_first_window)
         self.Cart_controller.client_pushed.connect(self.show_clientMain)
 

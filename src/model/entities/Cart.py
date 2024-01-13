@@ -14,15 +14,13 @@ class Cart:
         self.items = [item for item in self.items if item['product'].getID() != product_id]
 
     def getCartItems(self):
-      
         return self.items
-    def getTotal(self):
 
+    def getTotal(self):
         total = 0.0
         for item in self.items:
-            total += item['product'].price * item['quantity']
+            total += item['product'].getPrice() * item['quantity']
         return total
 
     def clearCart(self):
-
         self.items = []

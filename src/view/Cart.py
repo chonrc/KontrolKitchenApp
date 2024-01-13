@@ -1,10 +1,9 @@
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Custom_Widgets.Widgets import QCustomSlideMenu
 
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1294, 669)
 
@@ -109,21 +108,34 @@ class Ui_MainWindow(object):
         self.menu_Button.setObjectName("menu_Button")
         self.horizontalLayout_3.addWidget(self.menu_Button)
         self.horizontalLayout_2.addWidget(self.widget, 0, QtCore.Qt.AlignLeft)
-        self.pushButton = QtWidgets.QPushButton(self.headerFrame)
+        self.deleteButton = QtWidgets.QPushButton(self.headerFrame)
         font = QtGui.QFont()
         font.setPointSize(16)
-        font.setBold(True)
-        font.setWeight(75)
-        self.pushButton.setFont(font)
-        self.pushButton.setStyleSheet("background-color: rgb(239, 249, 254);\n"
+        font.setBold(False)
+        font.setWeight(50)
+        self.deleteButton.setFont(font)
+        self.deleteButton.setStyleSheet("background-color: rgb(239, 249, 254);\n"
 "border: none;\n"
 "color: rgb(37, 150, 190);")
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/slash.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton.setIcon(icon1)
-        self.pushButton.setIconSize(QtCore.QSize(32, 32))
-        self.pushButton.setObjectName("pushButton")
-        self.horizontalLayout_2.addWidget(self.pushButton)
+        self.deleteButton.setIcon(icon1)
+        self.deleteButton.setIconSize(QtCore.QSize(32, 32))
+        self.deleteButton.setObjectName("deleteButton")
+        self.horizontalLayout_2.addWidget(self.deleteButton)
+        self.payButton = QtWidgets.QPushButton(self.headerFrame)
+        font = QtGui.QFont()
+        font.setPointSize(16)
+        self.payButton.setFont(font)
+        self.payButton.setStyleSheet("background-color: rgb(239, 249, 254);\n"
+"border: none;\n"
+"color: rgb(37, 150, 190);")
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/thumbs-up.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.payButton.setIcon(icon2)
+        self.payButton.setIconSize(QtCore.QSize(32, 32))
+        self.payButton.setObjectName("payButton")
+        self.horizontalLayout_2.addWidget(self.payButton)
         self.widget_5 = QtWidgets.QWidget(self.headerFrame)
         self.widget_5.setObjectName("widget_5")
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.widget_5)
@@ -133,9 +145,9 @@ class Ui_MainWindow(object):
         self.account_Button = QtWidgets.QPushButton(self.widget_5)
         self.account_Button.setStyleSheet("border: none;")
         self.account_Button.setText("")
-        icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/user.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.account_Button.setIcon(icon2)
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/user.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.account_Button.setIcon(icon3)
         self.account_Button.setIconSize(QtCore.QSize(32, 32))
         self.account_Button.setObjectName("account_Button")
         self.horizontalLayout_5.addWidget(self.account_Button)
@@ -221,15 +233,15 @@ class Ui_MainWindow(object):
         self.label_18.setObjectName("label_18")
         self.verticalLayout_18.addWidget(self.label_18, 0, QtCore.Qt.AlignHCenter)
         self.Profile_bttn = QtWidgets.QPushButton(self.frame_13)
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/pen-tool.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.Profile_bttn.setIcon(icon3)
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/pen-tool.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.Profile_bttn.setIcon(icon4)
         self.Profile_bttn.setObjectName("Profile_bttn")
         self.verticalLayout_18.addWidget(self.Profile_bttn)
         self.pushButton_logout = QtWidgets.QPushButton(self.frame_13)
-        icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/power.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton_logout.setIcon(icon4)
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/power.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButton_logout.setIcon(icon5)
         self.pushButton_logout.setObjectName("pushButton_logout")
         self.verticalLayout_18.addWidget(self.pushButton_logout)
         self.verticalLayout_17.addWidget(self.frame_13, 0, QtCore.Qt.AlignTop)
@@ -242,9 +254,99 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.pushButton.setText(_translate("MainWindow", "Delete Cart "))
+        self.deleteButton.setText(_translate("MainWindow", "Delete Cart "))
+        self.payButton.setText(_translate("MainWindow", "Pay"))
         self.label_20.setText(_translate("MainWindow", "ClientName"))
         self.label_19.setText(_translate("MainWindow", "Client"))
         self.Profile_bttn.setText(_translate("MainWindow", "My Profile"))
         self.pushButton_logout.setText(_translate("MainWindow", " Logout"))
+   
+   
+   
+    def displayCart(self, cart):
+        # Clear frame 6
+        self.clearFrame()
 
+        # Iterate through the items in the cart and display them
+        for item in cart.getCartItems():
+                product = item['product']
+                quantity = item['quantity']
+
+                productWidget = QtWidgets.QWidget(self.frame_6)
+                productWidget.setObjectName("productWidget")
+                productLayout = QtWidgets.QHBoxLayout(productWidget)
+                productLayout.setObjectName("productLayout")
+
+                productNameLabel = QtWidgets.QLabel(productWidget)
+                productNameLabel.setText(product.getName())
+                productLayout.addWidget(productNameLabel)
+
+                quantityLabel = QtWidgets.QLabel(productWidget)
+                quantityLabel.setText(f"Quantity: {quantity}")
+                productLayout.addWidget(quantityLabel)
+
+                priceLabel = QtWidgets.QLabel(productWidget)
+                priceLabel.setText(f"Price: ${product.getPrice() * quantity:.2f}")
+                productLayout.addWidget(priceLabel)
+
+                plusButton = QtWidgets.QPushButton(productWidget)
+                plusButton.setText("+")
+                plusButton.clicked.connect(lambda _, p=product: self.adjustQuantity(cart, p, 1))
+                self.styleButton(plusButton)
+                productLayout.addWidget(plusButton)
+
+                minusButton = QtWidgets.QPushButton(productWidget)
+                minusButton.setText("-")
+                minusButton.clicked.connect(lambda _, p=product: self.adjustQuantity(cart, p, -1))
+                self.styleButton(minusButton, is_plus=False)
+                productLayout.addWidget(minusButton)
+
+                self.verticalLayout_2.addWidget(productWidget)
+
+        # Display total with improved visibility
+        totalLabel = QtWidgets.QLabel(self.frame_6)
+        totalLabel.setText(f"Total: ${cart.getTotal():.2f}")
+        self.styleTotalLabel(totalLabel)
+        self.verticalLayout_2.addWidget(totalLabel)
+
+    def clearFrame(self):
+        # Clear frame 6
+        for i in reversed(range(self.verticalLayout_2.count())):
+                widgetToRemove = self.verticalLayout_2.takeAt(i).widget()
+                if widgetToRemove is not None:
+                        widgetToRemove.setParent(None)
+
+
+                        
+    def styleButton(self, button, is_plus=True):
+        # Apply styling to + and - buttons
+        color = "#4CAF50" if is_plus else "#FF0000"  # Green for +, Red for -
+        button.setStyleSheet(f"""
+                QPushButton {{
+                background-color: {color};
+                color: white;
+                border: 1px solid {color};
+                border-radius: 5px;
+                padding: 5px;
+                }}
+                QPushButton:hover {{
+                background-color: #45a049;
+                }}
+        """)
+
+    def styleTotalLabel(self, label):
+        # Apply styling to the total label
+        label.setStyleSheet("""
+                QLabel {
+                font-size: 16px;
+                font-weight: bold;
+                color: #333;
+                }
+        """)
+
+    def adjustQuantity(self, cart, product, change):
+        for item in cart.getCartItems():
+            if item['product'].getID() == product.getID():
+                item['quantity'] += change
+
+        self.displayCart(cart)

@@ -7,7 +7,7 @@ from model.entities.Cart import Cart
 
 class ClientController(QWidget):
     logout_pushed  = pyqtSignal()
-    cart_pushed = pyqtSignal()
+    cart_pushed = pyqtSignal(Cart)
     myCart = Cart()
 
     def __init__(self, window_controller):
@@ -39,8 +39,8 @@ class ClientController(QWidget):
 
     def cartwindow(self):
         self.window.close()
-        self.cart_pushed.emit()
-        
+        self.cart_pushed.emit(self.myCart)
+
     def add_to_cart(self, product):
         self.myCart.addProduct(product)
         print("added to cart.")
