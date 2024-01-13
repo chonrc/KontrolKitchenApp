@@ -1,15 +1,10 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Custom_Widgets.Widgets import QCustomSlideMenu
-from PyQt5.QtWidgets import QScrollArea, QWidget, QVBoxLayout, QHBoxLayout,  QLabel, QLineEdit, QGridLayout, QSizePolicy
-from PyQt5.QtCore import Qt, pyqtSignal
-
-
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        self.product_widgets = []
-
+        MainWindow.setObjectName("MainWindow")
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1294, 669)
 
@@ -103,20 +98,32 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.widget)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.menu_Button = QtWidgets.QPushButton(self.widget)
-        font = QtGui.QFont()
-        font.setPointSize(5)
-        self.menu_Button.setFont(font)
         self.menu_Button.setStyleSheet("background-color: rgb(239, 249, 254);\n"
 "border: none;\n"
 "")
         self.menu_Button.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/shopping-cart.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/arrow-left-circle.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.menu_Button.setIcon(icon)
         self.menu_Button.setIconSize(QtCore.QSize(32, 32))
         self.menu_Button.setObjectName("menu_Button")
         self.horizontalLayout_3.addWidget(self.menu_Button)
         self.horizontalLayout_2.addWidget(self.widget, 0, QtCore.Qt.AlignLeft)
+        self.pushButton = QtWidgets.QPushButton(self.headerFrame)
+        font = QtGui.QFont()
+        font.setPointSize(16)
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton.setFont(font)
+        self.pushButton.setStyleSheet("background-color: rgb(239, 249, 254);\n"
+"border: none;\n"
+"color: rgb(37, 150, 190);")
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/slash.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButton.setIcon(icon1)
+        self.pushButton.setIconSize(QtCore.QSize(32, 32))
+        self.pushButton.setObjectName("pushButton")
+        self.horizontalLayout_2.addWidget(self.pushButton)
         self.widget_5 = QtWidgets.QWidget(self.headerFrame)
         self.widget_5.setObjectName("widget_5")
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.widget_5)
@@ -126,14 +133,14 @@ class Ui_MainWindow(object):
         self.account_Button = QtWidgets.QPushButton(self.widget_5)
         self.account_Button.setStyleSheet("border: none;")
         self.account_Button.setText("")
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/user.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.account_Button.setIcon(icon1)
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/user.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.account_Button.setIcon(icon2)
         self.account_Button.setIconSize(QtCore.QSize(32, 32))
         self.account_Button.setObjectName("account_Button")
         self.horizontalLayout_5.addWidget(self.account_Button)
         self.horizontalLayout_2.addWidget(self.widget_5, 0, QtCore.Qt.AlignRight)
-        self.verticalLayout.addWidget(self.headerFrame, 0, QtCore.Qt.AlignTop)
+        self.verticalLayout.addWidget(self.headerFrame)
         self.widget_4 = QtWidgets.QWidget(self.mainBody)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -161,6 +168,9 @@ class Ui_MainWindow(object):
         self.frame_6.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_6.setObjectName("frame_6")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.frame_6)
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.verticalLayout_9.addWidget(self.frame_6)
         self.horizontalLayout_12.addWidget(self.widget_6)
         self.verticalLayout.addWidget(self.widget_4)
@@ -211,15 +221,15 @@ class Ui_MainWindow(object):
         self.label_18.setObjectName("label_18")
         self.verticalLayout_18.addWidget(self.label_18, 0, QtCore.Qt.AlignHCenter)
         self.Profile_bttn = QtWidgets.QPushButton(self.frame_13)
-        icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/pen-tool.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.Profile_bttn.setIcon(icon2)
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/pen-tool.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.Profile_bttn.setIcon(icon3)
         self.Profile_bttn.setObjectName("Profile_bttn")
         self.verticalLayout_18.addWidget(self.Profile_bttn)
         self.pushButton_logout = QtWidgets.QPushButton(self.frame_13)
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/power.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton_logout.setIcon(icon3)
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap(":/blueIcons/resources/icons_blue/power.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButton_logout.setIcon(icon4)
         self.pushButton_logout.setObjectName("pushButton_logout")
         self.verticalLayout_18.addWidget(self.pushButton_logout)
         self.verticalLayout_17.addWidget(self.frame_13, 0, QtCore.Qt.AlignTop)
@@ -232,102 +242,9 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.pushButton.setText(_translate("MainWindow", "Delete Cart "))
         self.label_20.setText(_translate("MainWindow", "ClientName"))
         self.label_19.setText(_translate("MainWindow", "Client"))
         self.Profile_bttn.setText(_translate("MainWindow", "My Profile"))
         self.pushButton_logout.setText(_translate("MainWindow", " Logout"))
-    def setProducts(self, products):
-        scroll_area = QScrollArea(self.frame_6)
-        scroll_area.setWidgetResizable(True)
 
-        # Create a widget to hold the products in a grid
-        scroll_widget = QWidget(scroll_area)
-        scroll_layout = QGridLayout(scroll_widget)
-        scroll_widget.setLayout(scroll_layout)
-
-        # Add products to the layout
-        for index, product in enumerate(products):
-                product_widget = ProductWidget(product)
-                row = index // 3  
-                column = index % 3
-                product_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-                scroll_layout.addWidget(product_widget, row, column)
-                self.product_widgets.append(product_widget)
-
-        # Set the scroll area widget
-        scroll_area.setWidget(scroll_widget)
-
-        # Add the scroll area to the main layout
-        main_layout = QHBoxLayout(self.frame_6)
-        main_layout.addWidget(scroll_area)
-
-        self.frame_6.setLayout(main_layout)
-                
-
-class ProductWidget(QtWidgets.QWidget):
-    
-   add_to_cart_clicked = QtCore.pyqtSignal(object)
-
-   def __init__(self, product):
-        super().__init__()
-        self.product = product
-
-        self.setStyleSheet("background-color: #f8f8f8; color: #333;")
-
-        container_frame = QtWidgets.QFrame(self)
-        container_frame.setObjectName("productFrame")
-        container_layout = QtWidgets.QVBoxLayout(container_frame)
-        container_layout.setContentsMargins(10, 10, 10, 10)
-
-        image_data = product.image
-
-        if image_data is not None:
-                qbytearray = QtCore.QByteArray(image_data)
-                pixmap = QtGui.QPixmap()
-                pixmap.loadFromData(qbytearray)
-
-                photo_label = QtWidgets.QLabel()
-                photo_label.setPixmap(pixmap.scaledToWidth(150))
-                photo_label.setAlignment(QtCore.Qt.AlignCenter)
-                container_layout.addWidget(photo_label)
-        else:
-                no_photo_label = QtWidgets.QLabel("No Photo Available")
-                no_photo_label.setAlignment(QtCore.Qt.AlignCenter)
-                no_photo_label.setStyleSheet("font-style: italic; color: #777;")
-                container_layout.addWidget(no_photo_label)
-
-        # Name
-        name_label = QtWidgets.QLabel("Name:")
-        name_label.setStyleSheet("font-weight: bold; color: #333;")
-        container_layout.addWidget(name_label)
-        self.name_label = QtWidgets.QLabel(product.name)
-        self.name_label.setStyleSheet("color: #333;")
-        container_layout.addWidget(self.name_label)
-
-        # Description
-        description_label = QtWidgets.QLabel("Description:")
-        description_label.setStyleSheet("font-weight: bold; color: #333;")
-        container_layout.addWidget(description_label)
-        self.description_label = QtWidgets.QLabel(product.description)
-        self.description_label.setStyleSheet("color: #333;")
-        container_layout.addWidget(self.description_label)
-
-        # Price
-        price_label = QtWidgets.QLabel("Price:")
-        price_label.setStyleSheet("font-weight: bold; color: #333;")
-        container_layout.addWidget(price_label)
-        self.price_label = QtWidgets.QLabel(f"${product.price}")
-        self.price_label.setStyleSheet("color: #333;")
-        container_layout.addWidget(self.price_label)
-
-        # Add to Cart Button
-        add_to_cart_button = QtWidgets.QPushButton("Add to Cart")
-        add_to_cart_button.setStyleSheet("background-color: #4285f4; color: white;")
-        add_to_cart_button.clicked.connect(lambda: self.add_to_cart_clicked.emit(product))
-        container_layout.addWidget(add_to_cart_button, alignment=QtCore.Qt.AlignCenter)
-
-        # Set up the layout for the main widget
-        main_layout = QtWidgets.QVBoxLayout()
-        main_layout.addWidget(container_frame)
-
-        self.setLayout(main_layout)

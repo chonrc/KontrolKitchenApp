@@ -7,6 +7,7 @@ from model.entities.Cart import Cart
 
 class ClientController(QWidget):
     logout_pushed  = pyqtSignal()
+    cart_pushed = pyqtSignal()
     myCart = Cart()
 
     def __init__(self, window_controller):
@@ -18,8 +19,9 @@ class ClientController(QWidget):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self.window)
 
-        self.ui.pushButton_logout.clicked.connect(self.logout)
 
+        self.ui.pushButton_logout.clicked.connect(self.logout)
+        self.ui.menu_Button.clicked.connect(self.cartwindow)
         self.ui.setProducts(self.dao.getAllProducts())
 
         for product_widget in self.ui.product_widgets:
@@ -35,6 +37,10 @@ class ClientController(QWidget):
         self.window.close()
         self.logout_pushed.emit()
 
+    def cartwindow(self):
+        self.window.close()
+        self.cart_pushed.emit()
+        
     def add_to_cart(self, product):
         self.myCart.addProduct(product)
         print("added to cart.")

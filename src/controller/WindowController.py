@@ -7,6 +7,8 @@ from controller.Product_controller import Product_controller
 from controller.ClientLogin_controller import ClientLoginController
 from controller.Client_controller import ClientController
 
+from controller.Cart_controller import CartController
+
 class WindowController:
     def __init__(self, app):
         super().__init__()
@@ -47,6 +49,12 @@ class WindowController:
     def show_clientMain(self):
         self.clientMain = ClientController(self)
         self.clientMain.logout_pushed.connect(self.show_first_window)
+        self.clientMain.cart_pushed.connect(self.show_cartWindow)
+
+    def show_cartWindow(self):
+        self.Cart_controller = CartController(self)
+        self.Cart_controller.logout_pushed.connect(self.show_first_window)
+        self.Cart_controller.client_pushed.connect(self.show_clientMain)
 
 
     def close_all(self):
