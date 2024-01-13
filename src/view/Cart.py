@@ -319,18 +319,20 @@ class Ui_MainWindow(object):
 
                         
     def styleButton(self, button, is_plus=True):
-        # Apply styling to + and - buttons
-        color = "#4CAF50" if is_plus else "#FF0000"  # Green for +, Red for -
+        base_color = "#4CAF50" if is_plus else "#FF0000" 
+        hover_color = "#45a049" if is_plus else "#e53935"  
+
         button.setStyleSheet(f"""
                 QPushButton {{
-                background-color: {color};
+                background-color: {base_color};
                 color: white;
-                border: 1px solid {color};
+                border: 1px solid {base_color};
                 border-radius: 5px;
                 padding: 5px;
                 }}
+
                 QPushButton:hover {{
-                background-color: #45a049;
+                background-color: {hover_color};
                 }}
         """)
 
@@ -348,5 +350,7 @@ class Ui_MainWindow(object):
         for item in cart.getCartItems():
             if item['product'].getID() == product.getID():
                 item['quantity'] += change
+                if item['quantity'] == 0:
+                     cart.removeProduct(product.getID())
 
         self.displayCart(cart)

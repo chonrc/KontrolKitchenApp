@@ -39,3 +39,5 @@ class CartController(QWidget):
     def clear(self):
         self.myCart.clearCart()
         self.ui.displayCart(self.myCart)
+
+    
