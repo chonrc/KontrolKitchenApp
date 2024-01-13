@@ -416,40 +416,37 @@ class Ui_MainWindow(object):
 
 class ProductWidget(QtWidgets.QWidget):
     
-    modify_clicked = pyqtSignal(object)  # Signal with the product as an argument
+    modify_clicked = pyqtSignal(object) 
     delete_clicked = pyqtSignal(object)  
     def __init__(self, product):
         super().__init__()
         self.product = product
 
-        # Set the background color
+    
         self.setStyleSheet("background-color: #f8f8f8; color: #333;")
 
-        # Create a container frame with a layout
+      
         container_frame = QtWidgets.QFrame(self)
-        container_frame.setObjectName("productFrame")  # Set object name for styling
+        container_frame.setObjectName("productFrame")  
         container_layout = QtWidgets.QVBoxLayout(container_frame)
         container_layout.setContentsMargins(10, 10, 10, 10)
 
-        # Assuming product.image is a bytes object containing image data
         image_data = product.image
 
-        # Check if image_data is not None
+      
         if image_data is not None:
-            # Convert bytes to a QByteArray
+            
             qbytearray = QtCore.QByteArray(image_data)
 
-            # Create a QPixmap from the QByteArray
             pixmap = QtGui.QPixmap()
             pixmap.loadFromData(qbytearray)
 
-            # Set up the photo_label with the QPixmap
             photo_label = QtWidgets.QLabel()
-            photo_label.setPixmap(pixmap.scaledToWidth(150))  # Adjust the width as needed
+            photo_label.setPixmap(pixmap.scaledToWidth(150)) 
             photo_label.setAlignment(QtCore.Qt.AlignCenter)
             container_layout.addWidget(photo_label)
         else:
-            # If image_data is None, display a message in the label
+            
             no_photo_label = QtWidgets.QLabel("No Photo Available")
             no_photo_label.setAlignment(QtCore.Qt.AlignCenter)
             no_photo_label.setStyleSheet("font-style: italic; color: #777;")
@@ -507,7 +504,7 @@ class ProductWidget(QtWidgets.QWidget):
         modify_button.setStyleSheet("background-color: #4CAF50; color: white;")
         button_layout.addWidget(modify_button, alignment=QtCore.Qt.AlignRight)
         modify_button.clicked.connect(lambda: self.modify_clicked.emit(self))
-        # Add the button layout to the container layout
+
         container_layout.addLayout(button_layout)
 
         self.setLayout(main_layout)

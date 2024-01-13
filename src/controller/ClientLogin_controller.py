@@ -31,10 +31,6 @@ class ClientLoginController(QWidget):
         if result == 0 : 
             self.ui.show_error_message("Wrong Password")
 
-        if result == 1:
+        else:
             self.window.close() 
             self.login_successful.emit() 
-        
-        if result == 2: 
-            self.window.close() 
-            self.login_successful.emit()

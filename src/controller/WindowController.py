@@ -5,6 +5,7 @@ from controller.NewProduct_controller import NewProduct_controller
 from controller.FirstWindowController import FirstWindowController
 from controller.Product_controller import Product_controller
 from controller.ClientLogin_controller import ClientLoginController
+from controller.Client_controller import ClientController
 
 class WindowController:
     def __init__(self, app):
@@ -41,6 +42,12 @@ class WindowController:
 
     def show_clientLogin(self):
         self.clientlogin_controller = ClientLoginController(self)
+        self.clientlogin_controller.login_successful.connect(self.show_clientMain)
+
+    def show_clientMain(self):
+        self.clientMain = ClientController(self)
+        self.clientMain.logout_pushed.connect(self.show_first_window)
+
 
     def close_all(self):
         self.app.quit()

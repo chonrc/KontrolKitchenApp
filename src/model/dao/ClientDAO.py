@@ -43,3 +43,24 @@ class ClientDao:
         finally:
             self.db.close_connection()
             print("The SQLite connection is closed")
+
+    
+    
+    def get_number_of_clients(self):
+        try:
+            self.db.open_connection()
+
+            query = "SELECT COUNT(*) FROM Clients"
+            self.db.cursor.execute(query)
+
+            num_clients = self.db.cursor.fetchone()[0]
+
+            return num_clients
+
+        except sqlite3.Error as error:
+            print("Error while getting the number of Clients", error)
+            return -1  
+
+        finally:
+            self.db.close_connection()
+            print("The SQLite connection is closed")

@@ -1,13 +1,34 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication
-from view.Admin import Ui_MainWindow
+from view.Client import Ui_MainWindow
 from Custom_Widgets.Widgets import *
 from PyQt5.QtCore import pyqtSignal
 from model.dao.ProductDAO import ProductDAO
 
-class ClienteController(QWidget):
-    def __init__(self):
-        self.cart = []
-        self.mesa_seleccionada = None
+class ClientController(QWidget):
+    logout_pushed  = pyqtSignal()
+
+
+    def __init__(self, window_controller):
+        super().__init__()
+        self.dao = ProductDAO()
+
+        self.window_controller = window_controller
+        self.window = QMainWindow()
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self.window)
+
+        self.ui.pushButton_logout.clicked.connect(self.logout)
+
+        self.ui.setProducts(self.dao.getAllProducts())
+
+        loadJsonStyle(self, self.ui, jsonFiles = { "src/view/client.json"})
+
+        self.window.show()
+
+
+    def logout(self):
+        self.window.close()
+        self.logout_pushed.emit()
 
     def add_to_cart(self, product):
         self.cart.append(product)
@@ -35,13 +56,3 @@ class ClienteController(QWidget):
 
     def finish_payment(self):
         print("Order finalized. Enjoy!")
-
-cliente = ClienteController()
-
-cliente.add_to_cart({"id": 1, "name": "Hamburguesa", "precio": 10.99})
-cliente.add_to_cart({"id": 2, "name": "Refresco", "precio": 2.5})
-cliente.look_cart()
-cliente.remove_cart({"id": 1, "name": "Hamburguesa", "precio": 10.99})
-cliente.look_cart()
-cliente.select_table(5)
-cliente.make_payment()

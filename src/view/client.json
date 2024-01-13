@@ -1,0 +1,65 @@
+{
+	"QCard": [{
+		"cards": [
+			"card1",
+			"card2",
+			"card3",
+			"card4"
+		],
+		"shadow":[{
+			"color": "#000",
+			"blurRadius": 10,
+			"xOffset": 0,
+	
+			"yOffset": 0
+		}]
+	},{
+		"cards": [
+			"widget_6",
+			"widget_7"
+		],
+		"shadow":[{
+			"color": "#000",
+			"blurRadius": 5,
+			"xOffset": 0,
+			"yOffset": 0
+		}]
+	}],
+	
+	"QCustomSlideMenu": [{
+		"name": "profileCont",
+		"floatPosition": [{
+			"relativeTo": "centralwidget", 
+			"position": "top-right", 
+			"shadow":[{
+				"color": "#000",
+				"blurRadius": 20,
+				"xOffset": 0,
+				"yOffset":0
+			}]
+		}],
+		"defaultSize": [{
+			"width": 0,
+			"height": 0
+		}],
+		"collapsedSize": [{
+			"width": 0,
+			"height": 0
+		}],
+
+		
+		"expandedSize": [{
+			"width": 130,
+			"height": 170
+		}],
+		
+		"toggleButton": [{
+			"buttonName": "account_Button"
+		}],
+		"menuTransitionAnimation": [{
+			"animationDuration": 1000,
+			"animationEasingCurve": "OutBack"
+		}]
+	}]
+}
+

@@ -3,6 +3,7 @@ from view.Admin import Ui_MainWindow
 from Custom_Widgets.Widgets import *
 from PyQt5.QtCore import pyqtSignal
 from model.dao.ProductDAO import ProductDAO
+from model.dao.ClientDAO import ClientDao
 
 class AdminController(QWidget):
     new_product_pushed = pyqtSignal()
@@ -12,6 +13,7 @@ class AdminController(QWidget):
     def __init__(self, window_controller):
         super().__init__()
         self.dao = ProductDAO()
+        self.client_dao = ClientDao()
 
         self.window_controller = window_controller
         self.window = QMainWindow()
@@ -23,8 +25,11 @@ class AdminController(QWidget):
         self.ui.Products_bttn.clicked.connect(self.products)
         self.ui.Lastest_bttn.clicked.connect(self.products)
 
+        
         self.ui.label_total_products.setText(str(self.dao.get_number_of_products()))
+        self.ui.label_total_clientes.setText(str(self.client_dao.get_number_of_clients()))
         self.ui.display_products(self.dao.get_products_dto())
+
 
         loadJsonStyle(self, self.ui, jsonFiles = { "src/view/style.json"})
         self.window.show()
