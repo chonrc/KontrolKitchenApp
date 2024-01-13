@@ -3,10 +3,11 @@ from view.Client import Ui_MainWindow
 from Custom_Widgets.Widgets import *
 from PyQt5.QtCore import pyqtSignal
 from model.dao.ProductDAO import ProductDAO
+from model.entities.Cart import Cart
 
 class ClientController(QWidget):
     logout_pushed  = pyqtSignal()
-
+    myCart = Cart()
 
     def __init__(self, window_controller):
         super().__init__()
@@ -21,6 +22,10 @@ class ClientController(QWidget):
 
         self.ui.setProducts(self.dao.getAllProducts())
 
+        for product_widget in self.ui.product_widgets:
+            product_widget.add_to_cart_clicked.connect(self.add_to_cart)
+            
+
         loadJsonStyle(self, self.ui, jsonFiles = { "src/view/client.json"})
 
         self.window.show()
@@ -31,8 +36,15 @@ class ClientController(QWidget):
         self.logout_pushed.emit()
 
     def add_to_cart(self, product):
-        self.cart.append(product)
-        print(f"{product['name']} add to cart.")
+        self.myCart.addProduct(product)
+        print("added to cart.")
+
+
+
+
+
+
+
 
     def remove_cart(self, product):
         try:

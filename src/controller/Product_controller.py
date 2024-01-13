@@ -36,7 +36,6 @@ class Product_controller(QWidget):
     def modifyProduct(self, product_widget):
         product = product_widget.product
 
-        # Get values from the QLineEdit widgets in the ProductWidget
         name = product_widget.name_line_edit.text()
         description = product_widget.description_line_edit.text()
         price = float(product_widget.price_line_edit.text())

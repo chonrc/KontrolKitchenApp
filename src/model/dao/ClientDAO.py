@@ -9,7 +9,6 @@ class ClientDao:
 
     def __init__(self):
         
-        # Defines the relative path to our database file
         db_relative_path = os.path.join('db', 'Kitchen_database')
         
         self.db = Connection(db_relative_path)
