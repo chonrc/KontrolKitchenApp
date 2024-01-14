@@ -348,9 +348,11 @@ class Ui_MainWindow(object):
 
     def adjustQuantity(self, cart, product, change):
         for item in cart.getCartItems():
-            if item['product'].getID() == product.getID():
-                item['quantity'] += change
-                if item['quantity'] == 0:
-                     cart.removeProduct(product.getID())
-
-        self.displayCart(cart)
+                if item['product'].getID() == product.getID():
+                        if item['quantity'] + change <= product.getQuantity() and item['quantity'] + change >= 0:  # Check if the total quantity is within the limit and non-negative
+                                item['quantity'] += change
+                                if item['quantity'] == 0:
+                                        cart.removeProduct(product.getID())
+                        else:
+                                print("The change in quantity is not allowed. Please check the available quantity of the product or make sure the quantity doesn't go below zero.")
+                self.displayCart(cart)
