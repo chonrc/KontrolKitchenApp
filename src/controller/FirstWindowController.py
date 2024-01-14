@@ -7,6 +7,7 @@ from PyQt5.QtCore import pyqtSignal
 class FirstWindowController(QWidget):
     adminwindow = pyqtSignal()
     clientLoginwindow = pyqtSignal()
+    signUpAdminwindow = pyqtSignal()
 
     def __init__(self, window_controller):
         super().__init__()
@@ -29,3 +30,4 @@ class FirstWindowController(QWidget):
     def admin(self):
         self.window.close()
         self.adminwindow.emit()
+    

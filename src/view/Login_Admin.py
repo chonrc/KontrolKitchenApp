@@ -1,4 +1,4 @@
-
+from PyQt5.QtWidgets import QMessageBox
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -144,3 +144,10 @@ class Ui_MainWindow(object):
         self.label_4.setText(_translate("MainWindow", "Forgot your User Name or Password?"))
         self.pushButton_newAdmin.setText(_translate("MainWindow", "New Admin"))
 
+
+    def show_error_message(self, message):
+        error_box = QMessageBox()
+        error_box.setIcon(QMessageBox.Critical)
+        error_box.setText(message)
+        error_box.setWindowTitle("Error")
+        error_box.exec_()

@@ -7,6 +7,7 @@ from controller.Product_controller import Product_controller
 from controller.ClientLogin_controller import ClientLoginController
 from controller.Client_controller import ClientController
 from controller.Clients_controller import Clients_controller
+from controller.SignUpAdmin_controller import SignUpAdmin_controller
 
 from controller.Cart_controller import CartController
 
@@ -24,6 +25,8 @@ class WindowController:
     def show_login_controller(self):
         self.login_controller = LoginController(self)
         self.login_controller.login_successful.connect(self.show_admin_controller)
+        self.login_controller.newAdmin.connect(self.show_signUpAdmin)
+
 
     def show_admin_controller(self, username = None):
         self.admin_controller = AdminController(self, username)
@@ -49,6 +52,12 @@ class WindowController:
     def show_clientLogin(self):
         self.clientlogin_controller = ClientLoginController(self)
         self.clientlogin_controller.login_successful.connect(self.show_clientMain)
+
+
+    def show_signUpAdmin(self):
+        self.SignUpAdmin_controller = SignUpAdmin_controller(self)
+        self.SignUpAdmin_controller.signUp_successful.connect(self.show_admin_controller)
+
 
     def show_clientMain(self, client_dto= None):
         self.clientMain = ClientController(self)

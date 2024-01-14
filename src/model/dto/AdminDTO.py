@@ -2,12 +2,12 @@ from model.entities.Admin import *
 import bcrypt
 class AdminDTO(Admin):
     def __init__(self, username, password):
-        # Declaring Password
-        password = password.encode('utf-8')
+        super().__init__(username, password, None)
+        
+       
 
-        # Hash a password for the first time, with a randomly-generated salt
-        hashed = bcrypt.hashpw(password, bcrypt.gensalt())
-        print(hashed)
+    def get_username(self):
+        return self.username
 
-
-        super().__init__(username, hashed, user_id=None) 
+    def get_pass(self):
+        return self.password
