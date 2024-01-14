@@ -24,6 +24,7 @@ class CartController(QWidget):
         self.ui.pushButton_logout.clicked.connect(self.logout)
         self.ui.menu_Button.clicked.connect(self.clientMain)
         self.ui.deleteButton.clicked.connect(self.clear)
+        self.ui.payButton.clicked.connect(self.checkOut)
         loadJsonStyle(self, self.ui, jsonFiles={"src/view/client.json"})
 
         self.window.show()
@@ -39,5 +40,10 @@ class CartController(QWidget):
     def clear(self):
         self.myCart.clearCart()
         self.ui.displayCart(self.myCart)
+
+    def checkOut(self):
+        self.myCart.receipt()
+        self.window.close()
+        self.client_pushed.emit()
 
     
