@@ -6,19 +6,21 @@ from PyQt5.QtCore import pyqtSignal
 
 class Product_controller(QWidget):
 
-    home_pushed = pyqtSignal()
-    new_product_pushed = pyqtSignal()
+    home_pushed = pyqtSignal(str)
+    new_product_pushed = pyqtSignal(str)
     logout_pushed  = pyqtSignal()
-    clients_pushed  = pyqtSignal()
+    clients_pushed  = pyqtSignal(str)
 
-    def __init__(self, window_controller):
+    def __init__(self, window_controller, username):
         super().__init__()
         self.window_controller = window_controller
         self.dao = ProductDAO()
+        self.username = username
 
         self.window = QMainWindow()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self.window)
+        
 
         self.ui.pushButton_logout.clicked.connect(self.logout)
         self.ui.home_bttn.clicked.connect(self.home)
@@ -26,6 +28,10 @@ class Product_controller(QWidget):
         self.ui.Clients_bttn.clicked.connect(self.clients)
 
         self.ui.setProducts(self.dao.getAllProducts())
+
+
+        if username is not None:
+            self.ui.label_20.setText(username)
 
         for product_widget in self.ui.product_widgets:
             product_widget.modify_clicked.connect(self.modifyProduct)
@@ -57,12 +63,12 @@ class Product_controller(QWidget):
 
     def home(self):
         self.window.close()
-        self.home_pushed.emit()
+        self.home_pushed.emit(self.username)
 
     def newProduct(self):
         self.window.close()
-        self.new_product_pushed.emit()
+        self.new_product_pushed.emit(self.username)
 
     def clients(self):
         self.window.close()
-        self.clients_pushed.emit()
+        self.clients_pushed.emit(self.username)

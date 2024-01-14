@@ -6,16 +6,17 @@ from PyQt5.QtCore import pyqtSignal
 from model.dao.ClientDAO import ClientDao
 
 class Clients_controller(QWidget):
-    new_product_pushed = pyqtSignal()
-    products_pushed = pyqtSignal()
+    new_product_pushed = pyqtSignal(str)
+    products_pushed = pyqtSignal(str)
     logout_pushed  = pyqtSignal()
-    home_pushed = pyqtSignal()
+    home_pushed = pyqtSignal(str)
 
-    def __init__(self, window_controller):
+    def __init__(self, window_controller, username):
         super().__init__()
         self.window_controller = window_controller
         self.dao = ProductDAO()
         self.clientdao = ClientDao()
+        self.username = username
 
         self.window = QMainWindow()
         self.ui = Ui_MainWindow()
@@ -28,6 +29,8 @@ class Clients_controller(QWidget):
 
         self.ui.display_clients_sales_summary(self.clientdao.get_clients_sales_summary())
 
+        if username is not None:
+            self.ui.label_20.setText(username)
 
         loadJsonStyle(self, self.ui, jsonFiles = { "src/view/style.json"})
         self.window.show()
@@ -37,13 +40,13 @@ class Clients_controller(QWidget):
 
     def newProduct(self):
         self.window.close()
-        self.new_product_pushed.emit()
+        self.new_product_pushed.emit(self.username)
 
     def products(self):
         self.window.close()
-        self.products_pushed.emit()
+        self.products_pushed.emit(self.username)
 
     def home(self):
         self.window.close()
-        self.home_pushed.emit()
+        self.home_pushed.emit(self.username)
     
