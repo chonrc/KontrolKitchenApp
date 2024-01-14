@@ -1,0 +1,8 @@
+PyQt5
+bcrypt
+QT-PyQt-PySide-Custom-Widgets
+pycairo @ https://www.lfd.uci.edu/~gohlke/pythonlibs/pycairo-1.21.0-cp39-cp39-win_amd64.whl
+cairocffi @ https://www.lfd.uci.edu/~gohlke/pythonlibs/cairocffi-1.3.0-cp39-cp39-win_amd64.whl
+iconify
+PySide2
+fpdf
