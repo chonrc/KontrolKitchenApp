@@ -215,6 +215,36 @@ QPushButton#pushButton_Login:pressed{
       <string/>
      </property>
     </widget>
+    <widget class="QPushButton" name="pushButton_newAdmin">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>390</y>
+       <width>89</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#pushButton_newAdmin{
+	background-color: qlineargradient(spread:pad, x1:0, y1:0.505682, x2:1, y2:0.477, stop:0 rgba(11, 131, 120, 219), stop:1 rgba(85, 98, 112, 226));
+	color:rgba(255, 255, 255, 210);
+	border-radius:5px;
+}
+
+QPushButton#pushButton_newAdmin:hover{
+	background-color: qlineargradient(spread:pad, x1:0, y1:0.505682, x2:1, y2:0.477, stop:0 rgba(150, 123, 111, 219), stop:1 rgba(85, 81, 84, 226));
+}
+
+QPushButton#pushButton_newAdmin:pressed{
+	padding-left:5px;
+	padding-top:5px;
+	background-color:rgba(150, 123, 111, 255);
+}</string>
+     </property>
+     <property name="text">
+      <string>New Admin</string>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>
