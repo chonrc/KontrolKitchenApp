@@ -6,6 +6,7 @@ from controller.FirstWindowController import FirstWindowController
 from controller.Product_controller import Product_controller
 from controller.ClientLogin_controller import ClientLoginController
 from controller.Client_controller import ClientController
+from controller.Clients_controller import Clients_controller
 
 from controller.Cart_controller import CartController
 
@@ -24,23 +25,26 @@ class WindowController:
         self.login_controller = LoginController(self)
         self.login_controller.login_successful.connect(self.show_admin_controller)
 
-    def show_admin_controller(self, username):
+    def show_admin_controller(self, username = None):
         self.admin_controller = AdminController(self, username)
         self.admin_controller.logout_pushed.connect(self.close_all)
         self.admin_controller.new_product_pushed.connect(self.show_new_product)
         self.admin_controller.products_pushed.connect(self.show_products)
+        self.admin_controller.clients_pushed.connect(self.show_clients)
 
     def show_new_product(self):
         self.new_product_controller = NewProduct_controller(self)
         self.new_product_controller.logout_pushed.connect(self.close_all)
         self.new_product_controller.home_pushed.connect(self.show_admin_controller)
         self.new_product_controller.products_pushed.connect(self.show_products)
+        self.new_product_controller.clients_pushed.connect(self.show_clients)
 
     def show_products(self):
         self.product_controller = Product_controller(self)
         self.product_controller.logout_pushed.connect(self.close_all)
         self.product_controller.home_pushed.connect(self.show_admin_controller)
         self.product_controller.new_product_pushed.connect(self.show_new_product)
+        self.product_controller.clients_pushed.connect(self.show_clients)
 
     def show_clientLogin(self):
         self.clientlogin_controller = ClientLoginController(self)
@@ -57,6 +61,12 @@ class WindowController:
         self.Cart_controller.logout_pushed.connect(self.show_first_window)
         self.Cart_controller.client_pushed.connect(self.show_clientMain)
 
+    def show_clients(self):
+        self.clients = Clients_controller(self)
+        self.clients.logout_pushed.connect(self.close_all)
+        self.clients.new_product_pushed.connect(self.show_new_product)
+        self.clients.products_pushed.connect(self.show_products)
+        self.clients.home_pushed.connect(self.show_admin_controller)
 
     def close_all(self):
         self.app.quit()

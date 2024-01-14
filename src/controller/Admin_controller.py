@@ -11,7 +11,8 @@ class AdminController(QWidget):
     new_product_pushed = pyqtSignal()
     products_pushed = pyqtSignal()
     logout_pushed  = pyqtSignal()
-
+    clients_pushed  = pyqtSignal()
+    
     def __init__(self, window_controller, username):
         super().__init__()
         self.dao = ProductDAO()
@@ -27,8 +28,12 @@ class AdminController(QWidget):
         self.ui.NewProduct_bttn.clicked.connect(self.newProduct)
         self.ui.Products_bttn.clicked.connect(self.products)
         self.ui.Lastest_bttn.clicked.connect(self.products)
+        self.ui.Clients_bttn.clicked.connect(self.clients)
+        self.ui.MoreClients_bttn.clicked.connect(self.clients)
 
-        self.ui.label_20.setText(username)
+        if username is not None:
+            self.ui.label_20.setText(username)
+
         self.ui.label_beneficio.setText(str(self.sales_dao.get_total_benefit()))
         self.ui.label_ventas.setText(str(self.sales_dao.get_number_of_sales()))
         self.ui.label_total_products.setText(str(self.dao.get_number_of_products()))
@@ -50,3 +55,7 @@ class AdminController(QWidget):
     def products(self):
         self.window.close()
         self.products_pushed.emit()
+
+    def clients(self):
+        self.window.close()
+        self.clients_pushed.emit()

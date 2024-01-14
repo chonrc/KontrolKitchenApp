@@ -8,6 +8,7 @@ class NewProduct_controller(QWidget):
     home_pushed = pyqtSignal()
     products_pushed = pyqtSignal()
     logout_pushed  = pyqtSignal()
+    clients_pushed  = pyqtSignal()
 
     def __init__(self, window_controller):
         super().__init__()
@@ -24,6 +25,7 @@ class NewProduct_controller(QWidget):
         self.ui.photo_bttn.clicked.connect(self.submit_photo)
         self.ui.Products_bttn.clicked.connect(self.products)
         self.ui.clear_bttn.clicked.connect(self.clear)
+        self.ui.Clients_bttn.clicked.connect(self.clients)
 
         loadJsonStyle(self, self.ui, jsonFiles = { "src/view/style.json"})
         self.window.show()
@@ -63,9 +65,11 @@ class NewProduct_controller(QWidget):
         file_name = self.ui.selectPhoto()
         
         if file_name:
-            # Read the file and convert it to bytes
             with open(file_name, 'rb') as file:
                 file_blob = file.read()
 
-            # Assign the blob to the global variable
             self.global_blob = file_blob
+
+    def clients(self):
+        self.window.close()
+        self.clients_pushed.emit()

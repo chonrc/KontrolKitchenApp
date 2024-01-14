@@ -9,6 +9,7 @@ class Product_controller(QWidget):
     home_pushed = pyqtSignal()
     new_product_pushed = pyqtSignal()
     logout_pushed  = pyqtSignal()
+    clients_pushed  = pyqtSignal()
 
     def __init__(self, window_controller):
         super().__init__()
@@ -22,6 +23,7 @@ class Product_controller(QWidget):
         self.ui.pushButton_logout.clicked.connect(self.logout)
         self.ui.home_bttn.clicked.connect(self.home)
         self.ui.NewProduct_bttn.clicked.connect(self.newProduct)
+        self.ui.Clients_bttn.clicked.connect(self.clients)
 
         self.ui.setProducts(self.dao.getAllProducts())
 
@@ -60,3 +62,7 @@ class Product_controller(QWidget):
     def newProduct(self):
         self.window.close()
         self.new_product_pushed.emit()
+
+    def clients(self):
+        self.window.close()
+        self.clients_pushed.emit()

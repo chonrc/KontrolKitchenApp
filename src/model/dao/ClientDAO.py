@@ -91,3 +91,36 @@ class ClientDao:
         finally:
             self.db.close_connection()
             print("The SQLite connection is closed")
+
+    def get_clients_sales_summary(self):
+        try:
+            self.db.open_connection()
+
+            query = """
+                SELECT C.ClientID, C.Username, SUM(S.Total) as TotalSales
+                FROM Clients C
+                LEFT JOIN Sales S ON C.ClientID = S.ClientID
+                GROUP BY C.ClientID, C.Username
+            """
+            self.db.cursor.execute(query)
+
+            clients_sales_data = self.db.cursor.fetchall()
+
+            clients_sales_summary_list = []
+            for client_sales_data in clients_sales_data:
+                client_sales_summary = {
+                    'ClientID': client_sales_data[0],
+                    'Username': client_sales_data[1],
+                    'TotalSales': client_sales_data[2]
+                }
+                clients_sales_summary_list.append(client_sales_summary)
+
+            return clients_sales_summary_list
+
+        except sqlite3.Error as error:
+            print("Error while fetching clients' sales summary", error)
+            return []
+
+        finally:
+            self.db.close_connection()
+            print("The SQLite connection is closed")
