@@ -24,8 +24,8 @@ class WindowController:
         self.login_controller = LoginController(self)
         self.login_controller.login_successful.connect(self.show_admin_controller)
 
-    def show_admin_controller(self):
-        self.admin_controller = AdminController(self)
+    def show_admin_controller(self, username):
+        self.admin_controller = AdminController(self, username)
         self.admin_controller.logout_pushed.connect(self.close_all)
         self.admin_controller.new_product_pushed.connect(self.show_new_product)
         self.admin_controller.products_pushed.connect(self.show_products)

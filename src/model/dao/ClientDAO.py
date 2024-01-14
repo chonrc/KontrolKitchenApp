@@ -63,3 +63,24 @@ class ClientDao:
         finally:
             self.db.close_connection()
             print("The SQLite connection is closed")
+
+
+            
+    def get_clients_list(self):
+        try:
+            self.db.open_connection()
+
+            query = "SELECT Username, ClientID FROM Clients"
+            self.db.cursor.execute(query)
+
+            clients_list = self.db.cursor.fetchall()
+
+            return clients_list
+
+        except sqlite3.Error as error:
+            print("Error while getting the list of Clients", error)
+            return None  
+
+        finally:
+            self.db.close_connection()
+            print("The SQLite connection is closed")
