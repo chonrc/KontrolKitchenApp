@@ -55,5 +55,8 @@ class CartController(QWidget):
 
         table_number = random.randint(1, 20)
         print(self.myCart.getClient().get_id())
-        self.salesDAO.add_sale(self.myCart.getClient().get_id(), self.myCart.getTotal(), table_number)
+
+        cart_items = [(item['product'].getID(), item['quantity']) for item in self.myCart.getCartItems()]
+
+        self.salesDAO.add_sale(self.myCart.getClient().get_id(), self.myCart.getTotal(), table_number, cart_items)
         self.logout()

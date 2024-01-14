@@ -52,20 +52,30 @@ class SalesDAO:
             print("The SQLite connection is closed")
 
 
-    def add_sale(self, client_id, total, table_number):
+    def add_sale(self, client_id, total, table_number, products):
         try:
             self.db.open_connection()
 
             # Get the current date and time in the format 'YYYY-MM-DD HH:MM:SS'
             sale_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-            query = "INSERT INTO Sales (ClientID, Total, SaleDate, TableNumber) VALUES (?, ?, ?, ?)"
-            values = (client_id, total, sale_date, table_number)
+            # Insert into "Sales" table
+            sale_query = "INSERT INTO Sales (ClientID, Total, SaleDate, TableNumber) VALUES (?, ?, ?, ?)"
+            sale_values = (client_id, total, sale_date, table_number)
 
-            self.db.cursor.execute(query, values)
+            self.db.cursor.execute(sale_query, sale_values)
+            sale_id = self.db.cursor.lastrowid
+
+            # Insert or update into "SaleProducts" table
+            if products:
+                product_query = "INSERT OR REPLACE INTO SaleProducts (SaleID, ProductID, Quantity) VALUES (?, ?, ?)"
+                product_values = [(sale_id, product_id, quantity) for product_id, quantity in products]
+
+                self.db.cursor.executemany(product_query, product_values)
+
             self.db.connection.commit()
 
-            return self.db.cursor.lastrowid
+            return sale_id
 
         except sqlite3.Error as error:
             print("Error while adding a new sale", error)
