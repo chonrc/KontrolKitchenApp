@@ -11,9 +11,8 @@ class Cart:
 
     def __init__(self):
         self.items = []
-        
-
-
+    
+    
 
     def getClient(self):
         return self.client_dto 
@@ -22,12 +21,17 @@ class Cart:
         self.client_dto = client
     
     def addProduct(self, product, quantity=1):
-        for item in self.items:
-            if item['product'].getID() == product.getID():
-                item['quantity'] += quantity
-                return
+        if product.getQuantity() >= quantity:  # Check if the product quantity is enough
+            for item in self.items:
+                if item['product'].getID() == product.getID():
+                    if item['quantity'] + quantity <= product.getQuantity():  # Check if the total quantity is within the limit
+                        item['quantity'] += quantity
+                    return
+            self.items.append({'product': product, 'quantity': quantity})
+        else:
+            print("The product is out of stock or not enough quantity.")
 
-        self.items.append({'product': product, 'quantity': quantity})
+
 
     def removeProduct(self, product_id):
         self.items = [item for item in self.items if item['product'].getID() != product_id]
