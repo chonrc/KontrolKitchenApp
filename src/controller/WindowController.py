@@ -46,11 +46,12 @@ class WindowController:
         self.clientlogin_controller = ClientLoginController(self)
         self.clientlogin_controller.login_successful.connect(self.show_clientMain)
 
-    def show_clientMain(self):
+    def show_clientMain(self, client_dto= None):
         self.clientMain = ClientController(self)
         self.clientMain.logout_pushed.connect(self.show_first_window)
         self.clientMain.cart_pushed.connect(self.show_cartWindow)
-
+        self.clientMain.setClient(client_dto)
+        
     def show_cartWindow(self, cart):
         self.Cart_controller = CartController(self, cart)
         self.Cart_controller.logout_pushed.connect(self.show_first_window)

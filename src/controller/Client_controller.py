@@ -33,6 +33,13 @@ class ClientController(QWidget):
         self.window.show()
 
 
+    def setClient(self, client_dto):
+        if client_dto is not None:
+            self.myCart.setClient(client_dto)
+
+        self.ui.label_20.setText(self.myCart.getClient().get_username())
+
+        
     def logout(self):
         self.window.close()
         self.logout_pushed.emit()

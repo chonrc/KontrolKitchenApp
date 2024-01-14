@@ -2,6 +2,7 @@ from model.services.ConnectionService import Connection
 import sqlite3
 import os
 import bcrypt
+from datetime import datetime
 
 current_dir = os.getcwd()
 
@@ -44,6 +45,30 @@ class SalesDAO:
 
         except sqlite3.Error as error:
             print("Error while getting the total benefit", error)
+            return -1
+
+        finally:
+            self.db.close_connection()
+            print("The SQLite connection is closed")
+
+
+    def add_sale(self, client_id, total, table_number):
+        try:
+            self.db.open_connection()
+
+            # Get the current date and time in the format 'YYYY-MM-DD HH:MM:SS'
+            sale_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+            query = "INSERT INTO Sales (ClientID, Total, SaleDate, TableNumber) VALUES (?, ?, ?, ?)"
+            values = (client_id, total, sale_date, table_number)
+
+            self.db.cursor.execute(query, values)
+            self.db.connection.commit()
+
+            return self.db.cursor.lastrowid
+
+        except sqlite3.Error as error:
+            print("Error while adding a new sale", error)
             return -1
 
         finally:

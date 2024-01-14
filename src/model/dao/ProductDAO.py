@@ -140,3 +140,39 @@ class ProductDAO:
         finally:
             self.db.close_connection()
             print("The SQLite connection is closed")
+
+    
+    def subtract_quantity(self, products):
+        try:
+            self.db.open_connection()
+
+            for product in products:
+                # Get the current quantity of the product from the database
+                query = "SELECT quantity FROM Products WHERE productID = ?"
+                self.db.cursor.execute(query, (product['product'].product_id,))
+                current_quantity = self.db.cursor.fetchone()[0]
+
+                # Subtract the quantity
+                new_quantity = current_quantity - product['quantity']
+
+                # Update the quantity in the database
+                query = """
+                        UPDATE Products 
+                        SET quantity = ?
+                        WHERE productID = ?
+                        """
+                self.db.cursor.execute(query, (new_quantity, product['product'].product_id))
+
+            self.db.connection.commit()
+
+            print("Product quantities updated successfully")
+
+        except sqlite3.Error as error:
+            print("Error while updating product quantities", error)
+
+        finally:
+            self.db.close_connection()
+            print("The SQLite connection is closed")
+
+
+
