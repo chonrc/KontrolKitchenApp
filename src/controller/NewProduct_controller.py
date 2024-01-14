@@ -5,15 +5,16 @@ from model.dao.ProductDAO import ProductDAO
 from PyQt5.QtCore import pyqtSignal
 
 class NewProduct_controller(QWidget):
-    home_pushed = pyqtSignal()
-    products_pushed = pyqtSignal()
+    home_pushed = pyqtSignal(str)
+    products_pushed = pyqtSignal(str)
     logout_pushed  = pyqtSignal()
-    clients_pushed  = pyqtSignal()
+    clients_pushed  = pyqtSignal(str)
 
-    def __init__(self, window_controller):
+    def __init__(self, window_controller, username):
         super().__init__()
         self.window_controller = window_controller
         self.dao = ProductDAO()
+        self.username = username
 
         self.window = QMainWindow()
         self.ui = Ui_MainWindow()
@@ -27,6 +28,9 @@ class NewProduct_controller(QWidget):
         self.ui.clear_bttn.clicked.connect(self.clear)
         self.ui.Clients_bttn.clicked.connect(self.clients)
 
+        if username is not None:
+            self.ui.label_20.setText(username)
+
         loadJsonStyle(self, self.ui, jsonFiles = { "src/view/style.json"})
         self.window.show()
 
@@ -38,7 +42,7 @@ class NewProduct_controller(QWidget):
 
     def home(self):
         self.window.close()
-        self.home_pushed.emit()
+        self.home_pushed.emit(self.username)
 
     def submit(self):
         self.dao.add_new_Product(
@@ -59,7 +63,7 @@ class NewProduct_controller(QWidget):
          
     def products(self):
         self.window.close()
-        self.products_pushed.emit()
+        self.products_pushed.emit(self.username)
 
     def submit_photo(self):
         file_name = self.ui.selectPhoto()
@@ -72,4 +76,4 @@ class NewProduct_controller(QWidget):
 
     def clients(self):
         self.window.close()
-        self.clients_pushed.emit()
+        self.clients_pushed.emit(self.username)

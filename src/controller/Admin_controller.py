@@ -8,16 +8,17 @@ from model.dao.SalesDAO import SalesDAO
 
 
 class AdminController(QWidget):
-    new_product_pushed = pyqtSignal()
-    products_pushed = pyqtSignal()
+    new_product_pushed = pyqtSignal(str)
+    products_pushed = pyqtSignal(str)
     logout_pushed  = pyqtSignal()
-    clients_pushed  = pyqtSignal()
+    clients_pushed  = pyqtSignal(str)
     
     def __init__(self, window_controller, username):
         super().__init__()
         self.dao = ProductDAO()
         self.client_dao = ClientDao()
         self.sales_dao =  SalesDAO()
+        self.username = username
 
         self.window_controller = window_controller
         self.window = QMainWindow()
@@ -50,12 +51,12 @@ class AdminController(QWidget):
 
     def newProduct(self):
         self.window.close()
-        self.new_product_pushed.emit()
+        self.new_product_pushed.emit(self.username)
 
     def products(self):
         self.window.close()
-        self.products_pushed.emit()
+        self.products_pushed.emit(self.username)
 
     def clients(self):
         self.window.close()
-        self.clients_pushed.emit()
+        self.clients_pushed.emit(self.username)
