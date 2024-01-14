@@ -1,6 +1,6 @@
 import bcrypt
 from PyQt5.QtWidgets import QMainWindow, QWidget
-from view.Login import Ui_MainWindow
+from view.Login_Admin import Ui_MainWindow
 from model.dao.LoginDAO import LoginDao
 from PyQt5.QtCore import pyqtSignal
 
